@@ -1,0 +1,21 @@
+.navbar-nav-custom{
+  width:100%;
+  list-style:none;
+  flex-wrap: nowrap; 
+}
+
+.thumb-comment{
+  width:60px;
+  height:60px;
+  float:left;
+}
+
+.comment-thumbnail-container{
+  width:60px !important;
+}
+
+.comment-textbox{
+  float:left;
+  width:calc(60px - 100%) !important
+}
+

@@ -8,7 +8,7 @@ import * as serviceWorker from './serviceWorker'
 import { ConnectedRouter } from 'connected-react-router'
 import Routes from './router/routes'
 import { config } from 'dotenv'
-import './index.css'
+import './index.scss'
 import store, { history } from './store/store'
 // import App from './App'
 
