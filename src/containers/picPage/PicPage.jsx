@@ -42,8 +42,8 @@ export default class PicPage extends PicPageCtrl {
   }
   render () {
     return (
-      <div className='container'>
-        <Pic pic={this.pic} />
+      <div className='col-12 margin-bottom-50 margin-top-10'>
+        <Pic pic={this.pic} withDescription />
         <CommentList comments={this.commentList} />
       </div>
     )

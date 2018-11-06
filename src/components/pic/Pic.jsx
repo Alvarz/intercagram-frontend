@@ -25,7 +25,7 @@ export default class PicGallery extends PicCtrl {
             <div className='col comment-textbox'>
               <div className='row'>
                 <div className='col-12 align-left'>
-                  <span>{this.pic.user.username}</span>
+                  <span className='pic-username'>{this.pic.user.username}</span>
                 </div>
               </div>
             </div>
@@ -36,10 +36,11 @@ export default class PicGallery extends PicCtrl {
       description = (
         <div className='description margin-bottom-20 '>
           <ul className='row'>
-            <li className='col'>likes <span className='badge badge-light'>{this.pic.likes}</span></li>
-            <li className='col'>Comments <span className='badge badge-light'>{this.pic.commentsQty}</span></li>
+            {/* <li className='col'><i class='far fa-heart' /> {this.pic.likes}</li> */ }
+            <li className='col'><i class='fas fa-heart' /> {this.pic.likes}</li>
+            <li className='col'><i class='far fa-comment' /> {this.pic.commentsQty}</li>
           </ul>
-          <p>{this.pic.description }</p>
+          <p className='align-justify cut-text desc-pic'>{this.pic.description }</p>
         </div>
       )
     }

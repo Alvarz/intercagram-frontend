@@ -2,5 +2,21 @@
   width:100%;
   list-style:none;
   flex-wrap: nowrap; 
+   
 }
+
+header{
+
+    z-index:999;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    li{
+      margin: 0 auto;
+    }
+
+}
+
 

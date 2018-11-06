@@ -8,8 +8,8 @@ export default class PicGallery extends PicGalleryCtrl {
     super(props)
     this.pic = this.props.pic
     this.class = this.props.class || 'col'
-    this.withDesction = this.props.withDescription
-    console.log('this.withDesction', this.withDesction)
+    this.withDescription = this.props.withDescription
+    console.log('this.withDesction', this.withDescription)
   }
 
   render () {

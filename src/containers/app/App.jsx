@@ -6,6 +6,7 @@ import Header from '../../components/header/Header'
 import Feed from '../feed/Feed'
 import PicPage from '../picPage/PicPage'
 import Profile from '../profile/Profile'
+import Follow from '../follow/Follow'
 
 // <Route path="/pic/:picId"   component={  } />
 export default class App extends AppCtrl {
@@ -15,11 +16,13 @@ export default class App extends AppCtrl {
         <Header />
         <div className='container'>
           <div className='row'>
-            <div className='col-12 col-md-8 center'>
+            <div className='col-12 col-md-8 center col-cont'>
               <Switch>
                 <Route exact path='/' component={Feed} />
                 <Route path='/pic/:id' component={PicPage} />
                 <Route path='/profile/:id' component={Profile} />
+                <Route path='/followers/:userId' component={Follow} />
+                <Route path='/following/:userId' component={Follow} />
               </Switch>
             </div>
           </div>

@@ -29,6 +29,8 @@ const Routes = props => {
         <Route path='/profile/:userId' component={App} />
         <Route path='/profile' component={App} />
         <Route path='/pic/:picId' component={App} />
+        <Route path='/followers/:userId' component={App} />
+        <Route path='/following/:userId' component={App} />
       </Switch>
     </Router>
   )

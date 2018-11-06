@@ -41,16 +41,14 @@ export default class Profile extends ProfileCtrl {
    */
   render () {
     return (
-      <section>
-        <div className='row'>
-          <div class='col-12'>
-            <UserProfile user={this.user} />
-          </div>
-          <div class='col-12'>
-            <Gallery pics={this.pics} withDescription={this.description} />
-          </div>
+      <div className='margin-top-10 margin-bottom-50'>
+        <div className='col-12'>
+          <UserProfile user={this.user} />
         </div>
-      </section>
+        <div className='col-12'>
+          <Gallery pics={this.pics} withDescription={this.description} />
+        </div>
+      </div>
     )
   }
 }

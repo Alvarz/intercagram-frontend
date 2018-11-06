@@ -1,1 +1,23 @@
 
+.avatar{
+
+  width:77px;
+  height:77px;
+
+}
+
+.information{
+width:calc(77px - 100%)
+
+}
+
+@media (min-width: 768px){
+  .avatar{
+    width:150px !important;
+    height:150px !important;
+  }
+
+  .information{
+    width:calc(150px - 100%) !important
+  }
+}

@@ -16,7 +16,7 @@ export default class Gallery extends GalleryCtrl {
     return (
       <ul className='row'>
         {this.pics.map((pic, key) => {
-          return (<PicGallery key={key} pic={pic} withDesction={this.withDesction} class='col-3 gallery-li' />)
+          return (<PicGallery key={key} pic={pic} withDesction={this.withDesction} class='col-4 gallery-li' />)
         })
         }
       </ul>
