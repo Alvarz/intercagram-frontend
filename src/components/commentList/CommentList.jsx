@@ -14,7 +14,7 @@ export default class CommentList extends CommentListCtrl {
   render () {
     return (
       <section>
-        <ul cassName='list-group'>
+        <ul className='list-group'>
           {this.comments.map((comment, key) => {
             return (<li className='list-group-item' key={key}>
               <Comment comment={comment} />

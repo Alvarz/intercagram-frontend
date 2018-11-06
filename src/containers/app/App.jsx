@@ -7,6 +7,8 @@ import Feed from '../feed/Feed'
 import PicPage from '../picPage/PicPage'
 import Profile from '../profile/Profile'
 import Follow from '../follow/Follow'
+import Search from '../search/Search'
+import Upload from '../upload/Upload'
 
 // <Route path="/pic/:picId"   component={  } />
 export default class App extends AppCtrl {
@@ -20,6 +22,8 @@ export default class App extends AppCtrl {
               <Switch>
                 <Route exact path='/' component={Feed} />
                 <Route path='/pic/:id' component={PicPage} />
+                <Route path='/search' component={Search} />
+                <Route path='/upload' component={Upload} />
                 <Route path='/profile/:id' component={Profile} />
                 <Route path='/followers/:userId' component={Follow} />
                 <Route path='/following/:userId' component={Follow} />

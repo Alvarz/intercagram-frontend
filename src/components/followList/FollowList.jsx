@@ -15,7 +15,7 @@ export default class FollowList extends FollowListCtrl {
   render () {
     return (
       <section>
-        <ul cassName='list-group'>
+        <ul className='list-group'>
           {this.followList.map((follow, key) => {
             return (<li className='list-group-item' key={key}>
               <FollowItem followItem={follow} />

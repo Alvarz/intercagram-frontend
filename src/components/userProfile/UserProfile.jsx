@@ -27,7 +27,7 @@ export default class UserProfile extends UserProfileCtrl {
             <div className='col-md-6'>
               <ul className='row '>
                 <li className='col'>
-                  <a href=''>
+                  <a href='#gallery'>
                     <span className='br'>100 </span>
                     <small>published</small>
                   </a>

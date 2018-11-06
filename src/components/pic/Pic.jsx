@@ -37,8 +37,8 @@ export default class PicGallery extends PicCtrl {
         <div className='description margin-bottom-20 '>
           <ul className='row'>
             {/* <li className='col'><i class='far fa-heart' /> {this.pic.likes}</li> */ }
-            <li className='col'><i class='fas fa-heart' /> {this.pic.likes}</li>
-            <li className='col'><i class='far fa-comment' /> {this.pic.commentsQty}</li>
+            <li className='col'><i className='fas fa-heart' /> {this.pic.likes}</li>
+            <li className='col'><i className='far fa-comment' /> {this.pic.commentsQty}</li>
           </ul>
           <p className='align-justify cut-text desc-pic'>{this.pic.description }</p>
         </div>

@@ -4,17 +4,17 @@
   flex-wrap: nowrap; 
 }
 
-.thumb-comment{
+.thumb-followItem{
   width:60px;
   height:60px;
   float:left;
 }
 
-.comment-thumbnail-container{
+.followItem-thumbnail-container{
   width:60px !important;
 }
 
-.comment-textbox{
+.followItem-textbox{
   float:left;
   width:calc(60px - 100%) !important
 }
