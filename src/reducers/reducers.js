@@ -7,12 +7,12 @@ import { connectRouter } from 'connected-react-router'
 /**
  * @desc Reducers from views
  */
-// import WelcomeReducer from './WelcomeReducers'
+import PicReducer from './PicReducer'
 
 /**
  * @desc Export the reducers
 */
 export default (history) => combineReducers({
-  router: connectRouter(history)
-  // WelcomeReducer,
+  router: connectRouter(history),
+  PicReducer
 })

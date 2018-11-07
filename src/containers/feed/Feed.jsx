@@ -1,41 +1,23 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './css/Feed.scss'
 import FeedCtrl from './js/FeedCtrl'
+import { fetchPics, fetchPicsSuccess, fetchPicsFailure } from '../../actions/PicsActions'
 import PicGallery from '../../components/picGallery/PicGallery'
 /*
  * Feed class
  */
-export default class Feed extends FeedCtrl {
-  constructor () {
-    super()
-
-    this.pics = []
-
-    this.pic = {
-      id: 0,
-      url: 'https://via.placeholder.com/450',
-      description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-      likes: 12,
-      commentsQty: 6,
-      user: {
-        id: 1,
-        name: 'jane',
-        lastname: 'doe',
-        username: 'therealjanedoe'
-      }
-    }
-    for (let i = 1; i < 20; i++) {
-      this.pic.id = i
-      this.pics.push(this.pic)
-    }
-  }
+class Feed extends FeedCtrl {
   /*
    * life cicle react's method
    */
   render () {
+    this.picsList = this.props.picsList
+    if (this.picsList === undefined || this.picsList.length < 1) { return null }
+
     return (
       <ul className='margin-bottom-50 margin-top-10'>
-        {this.pics.map((pic, key) => {
+        {this.picsList.map((pic, key) => {
           return (<PicGallery key={key} pic={pic} withDescription />)
         })
         }
@@ -43,3 +25,24 @@ export default class Feed extends FeedCtrl {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    picsList: state.PicReducer.picsList.pics
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchPics: async () => {
+      const resp = await dispatch(fetchPics()).payload
+      dispatch(fetchPicsSuccess(resp.docs))
+      //! resp.bool ? dispatch(fetchPicsSuccess(resp.docs)) : dispatch(fetchPicsFailure(resp.docs))
+      /* dispatch(fetchPics()).then((response) => {
+        !response.error ? dispatch(fetchPicsSuccess(response.payload.data)) : dispatch(fetchPicsFailure(response.payload.data))
+      }) */
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)

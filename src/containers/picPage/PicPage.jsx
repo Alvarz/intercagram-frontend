@@ -1,51 +1,46 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './css/PicPage.scss'
 import PicPageCtrl from './js/PicPageCtrl'
 import Pic from '../../components/pic/Pic'
+import { getPic, getPicSuccess, getPicFailure } from '../../actions/PicsActions'
 import CommentList from '../../components/commentList/CommentList'
 // <Route path="/pic/:picId"   component={  } />
-export default class PicPage extends PicPageCtrl {
-  constructor (props) {
-    super(props)
+class PicPage extends PicPageCtrl {
+  /*
+   *
+   *
+   * */
 
-    this.id = this.props.match.params.id
-    this.pic = {
-      id: this.id,
-      url: 'https://via.placeholder.com/450',
-      description: 'loren ipsum',
-      likes: 12,
-      commentsQty: 6,
-      user: {
-        id: 1,
-        name: 'jane',
-        lastname: 'doe',
-        username: 'therealjanedoe'
-      }
-
-    }
-
-    this.commentList = []
-
-    this.comment = {
-      description: 'the description',
-      user: {
-        id: 1,
-        name: 'john',
-        lastname: 'doe',
-        username: 'thecreatejohndoe',
-        email: 'joendie@example.com'
-      }
-    }
-    for (let i = 0; i < 6; i++) {
-      this.commentList.push(this.comment)
-    }
-  }
   render () {
+    this.pic = this.props.pic
+    console.log(this.props)
+    if (this.pic === undefined || Object.keys(this.pic).length < 1) return null
     return (
       <div className='col-12 margin-bottom-50 margin-top-10'>
         <Pic pic={this.pic} withDescription />
-        <CommentList comments={this.commentList} />
+        <CommentList comments={this.pic.comments} />
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    pic: state.PicReducer.pic.pic
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPic: async (id) => {
+      const resp = await dispatch(getPic(id)).payload
+      !resp.bool ? dispatch(getPicSuccess(resp)) : dispatch(getPicFailure(resp))
+      /* dispatch(fetchPics()).then((response) => {
+        !response.error ? dispatch(fetchPicsSuccess(response.payload.data)) : dispatch(fetchPicsFailure(response.payload.data))
+      }) */
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PicPage)

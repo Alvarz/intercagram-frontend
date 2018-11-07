@@ -1,6 +1,5 @@
 import React from 'react'
 import './css/Header.scss'
-import logo from '../../logo.svg'
 import HeaderCtrl from './js/HeaderCtrl'
 import { Link } from 'react-router-dom'
 

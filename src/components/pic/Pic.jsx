@@ -18,14 +18,14 @@ export default class PicGallery extends PicCtrl {
         <div className='row'>
           <div className='col'>
             <div className='comment-thumbnail-container' >
-              <Link className='' to={`/profile/${this.pic.user.id}`} >
+              <Link className='' to={`/profile/${this.pic.user._id}`} >
                 <img className='rounded-circle thumb-comment img-thumbnail' src='https://image.shutterstock.com/image-vector/female-profile-picture-placeholder-vector-260nw-450966937.jpg' alt='alt' />
               </Link>
             </div>
             <div className='col comment-textbox'>
               <div className='row'>
                 <div className='col-12 align-left'>
-                  <span className='pic-username'>{this.pic.user.username}</span>
+                  <span className='pic-username'>{this.pic.user.nickname}</span>
                 </div>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default class PicGallery extends PicCtrl {
       <section>
         {topDescription}
         <div className='image margin-top-5'>
-          <Link to={`/pic/${this.pic.id}`}>
+          <Link to={`/pic/${this.pic._id}`}>
             <img src={this.pic.url} alt='image' />
           </Link>
         </div>

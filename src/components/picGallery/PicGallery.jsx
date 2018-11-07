@@ -14,7 +14,7 @@ export default class PicGallery extends PicGalleryCtrl {
 
   render () {
     return (
-      <li key={this.pic.id} id={this.pic.id} className={this.class}>
+      <li key={this.pic._id} id={this.pic._id} className={this.class}>
         <Pic pic={this.pic} withDescription={this.withDescription} />
       </li>
     )

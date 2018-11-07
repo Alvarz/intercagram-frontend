@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "connected-react-router": "^5.0.0",
     "dotenv": "^6.1.0",
+    "fetch-headers": "^2.0.0",
     "history": "^4.7.2",
+    "node-fetch": "^2.2.1",
     "node-sass": "^4.10.0",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
