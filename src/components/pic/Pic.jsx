@@ -76,24 +76,16 @@ const mapDispatchToProps = (dispatch) => {
         const resp = await dispatch(postLike(pic)).payload
         dispatch(postLikeSuccess(resp.docs))
       } catch (err) {
-        dispatch(removeLikeFailure(err))
+        dispatch(postLikeFailure(err))
       }
-      //! resp.bool ? dispatch(fetchPicsSuccess(resp.docs)) : dispatch(fetchPicsFailure(resp.docs))
-      /* dispatch(fetchPics()).then((response) => {
-        !response.error ? dispatch(fetchPicsSuccess(response.payload.data)) : dispatch(fetchPicsFailure(response.payload.data))
-      }) */
     },
     removeLike: async (pic) => {
       try {
         const resp = await dispatch(removeLike(pic)).payload
         dispatch(removeLikeSuccess(resp.docs))
       } catch (err) {
-        dispatch(postLikeFailure(err))
+        dispatch(removeLikeFailure(err))
       }
-      //! resp.bool ? dispatch(fetchPicsSuccess(resp.docs)) : dispatch(fetchPicsFailure(resp.docs))
-      /* dispatch(fetchPics()).then((response) => {
-        !response.error ? dispatch(fetchPicsSuccess(response.payload.data)) : dispatch(fetchPicsFailure(response.payload.data))
-      }) */
     }
   }
 }

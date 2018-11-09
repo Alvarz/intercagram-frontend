@@ -2,10 +2,10 @@
 import Requester from '../utils/request'
 import to from '../utils/to'
 
-export default class Like {
+export default class Follow {
   constructor () {
     this.requester = new Requester()
-    this.baseUrl = 'http://127.0.0.1:3000/api/pics'
+    this.baseUrl = 'http://127.0.0.1:3000/api/follow'
   }
 
   /*
@@ -14,7 +14,7 @@ export default class Like {
    *
    * */
   async get (id) {
-    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/like/${id}`))
+    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/${id}`))
     return response.data
   }
 
@@ -24,7 +24,7 @@ export default class Like {
    *
    * */
   async fetch (page = 1) {
-    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/like`))
+    const [error, response ] = await to(this.requester.get(this.baseUrl))
     return response.data
     /* let [error, response] = await to()
 
@@ -42,8 +42,8 @@ export default class Like {
    * */
   async post (data) {
     console.log(data)
-    let pic = { pic: data._id }
-    const [error, response ] = await to(this.requester.post(`${this.baseUrl}/like`, pic))
+    let followed = { followed: data._id }
+    const [error, response ] = await to(this.requester.post(this.baseUrl, followed))
     return response.data
   }
 
@@ -53,7 +53,7 @@ export default class Like {
    *
    * */
   async remove (id) {
-    const [error, response ] = await to(this.requester.remove(`${this.baseUrl}/unlike/${id}`))
+    const [error, response ] = await to(this.requester.remove(`${this.baseUrl}/${id}`))
     return response.data
   }
 }

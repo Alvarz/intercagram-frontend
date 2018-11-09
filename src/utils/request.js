@@ -10,7 +10,7 @@ export default class Requester {
 */
   constructor () {
     this.config = {
-      headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNWJlNGZlNjBlYmUxZDY3MDJhODZhYjk2IiwiaWF0IjoxNTQxNzM1MjQxfQ.N6ROLiMDp-5gA2k1wcNic6Nso_ccoY3luXJT0-Zb1Is' }
+      headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNWJlNTZiYmNlYmE2NjExN2Q4NWY0OGE0IiwiaWF0IjoxNTQxNzYyMTA1fQ.mn3RyStSORGpVRu7Gjp9-bGAd3Ug6ZNdJdl02UZSK-0' }
     }
     // Cabeceras
     this.dispatch = false

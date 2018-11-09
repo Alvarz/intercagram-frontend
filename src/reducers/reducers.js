@@ -10,6 +10,7 @@ import { connectRouter } from 'connected-react-router'
 import PicReducer from './PicReducer'
 import FeedReducer from './FeedReducer'
 import LikeReducer from './LikeReducer'
+import UserReducer from './UserReducer'
 
 /**
  * @desc Export the reducers
@@ -18,5 +19,6 @@ export default (history) => combineReducers({
   router: connectRouter(history),
   PicReducer,
   FeedReducer,
-  LikeReducer
+  LikeReducer,
+  UserReducer
 })
