@@ -14,7 +14,7 @@ export default class Comment extends CommentCtrl {
     return (
       <div className='row'>
         <div className='comment-thumbnail-container' >
-          <Link className='' to={`/profile/${this.comment.user.id}`} >
+          <Link className='' to={`/profile/${this.comment.user}`} >
             <img className='rounded-circle thumb-comment img-thumbnail' src='https://image.shutterstock.com/image-vector/female-profile-picture-placeholder-vector-260nw-450966937.jpg' alt='alt' />
           </Link>
         </div>

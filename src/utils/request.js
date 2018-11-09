@@ -10,7 +10,7 @@ export default class Requester {
 */
   constructor () {
     this.config = {
-      headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNWJkZGQyZmE4ZjAwZTU0YWU0ZDU1ZjkyIiwiaWF0IjoxNTQxMjkyMjE5fQ.9mIXKK3EhNmmDxZJLi44xplk1kurFy8BVHy5dzjrvp0' }
+      headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNWJlNGZlNjBlYmUxZDY3MDJhODZhYjk2IiwiaWF0IjoxNTQxNzM1MjQxfQ.N6ROLiMDp-5gA2k1wcNic6Nso_ccoY3luXJT0-Zb1Is' }
     }
     // Cabeceras
     this.dispatch = false
@@ -65,5 +65,21 @@ export default class Requester {
  */
   async post (endpoint, data) {
     return axios.post(endpoint, data, this.config)
+  }
+
+  /**
+ * @desc
+ *
+ * @param { String } endpoint
+ *
+ * @return { Promise }
+ */
+  async remove (endpoint) {
+    let [error, resp] = await to(axios.delete(endpoint, this.config))
+    if (error) {
+      console.error(error)
+      return error
+    }
+    return resp.data
   }
 }

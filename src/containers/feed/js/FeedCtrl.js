@@ -8,7 +8,7 @@ export default class FeedCtrl extends Component {
    *
    * */
   componentWillMount () {
-    this.props.fetchPics()
+    this.props.fetchFeed()
 
     /* this.pic = {
       id: 0,

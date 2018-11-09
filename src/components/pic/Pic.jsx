@@ -1,9 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './css/Pic.scss'
 import PicCtrl from './js/PicCtrl'
 import { Link } from 'react-router-dom'
+import {
+  postLike, postLikeSuccess, postLikeFailure,
+  removeLike, removeLikeSuccess, removeLikeFailure
+} from '../../actions/LikeActions'
 
-export default class PicGallery extends PicCtrl {
+class Pic extends PicCtrl {
   constructor (props) {
     super(props)
     this.pic = this.props.pic
@@ -36,8 +41,7 @@ export default class PicGallery extends PicCtrl {
       description = (
         <div className='description margin-bottom-20 '>
           <ul className='row'>
-            {/* <li className='col'><i class='far fa-heart' /> {this.pic.likes}</li> */ }
-            <li className='col'><i className='fas fa-heart' /> {this.pic.likes}</li>
+            { (this.pic.wasLikedByUser) ? <li className='col'><i className='fas fa-heart' /><button onClick={(e) => this.unlike(e, this.pic)} /> {this.pic.likes}</li> : <li className='col'><i className='far fa-heart' /><button onClick={(e) => this.like(e, this.pic)} /> {this.pic.likes}</li>}
             <li className='col'><i className='far fa-comment' /> {this.pic.commentsQty}</li>
           </ul>
           <p className='align-justify cut-text desc-pic'>{this.pic.description }</p>
@@ -49,8 +53,7 @@ export default class PicGallery extends PicCtrl {
       <section>
         {topDescription}
         <div className='image margin-top-5'>
-          <Link to={`/pic/${this.pic._id}`}>
-            <img src={this.pic.url} alt='image' />
+          <Link to={`/pic/${this.pic._id}`}> <img src={this.pic.url} alt='image' />
           </Link>
         </div>
         {description}
@@ -58,3 +61,41 @@ export default class PicGallery extends PicCtrl {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  console.log(state)
+  return {
+    likeList: state.LikeReducer.like
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    postLike: async (pic) => {
+      try {
+        const resp = await dispatch(postLike(pic)).payload
+        dispatch(postLikeSuccess(resp.docs))
+      } catch (err) {
+        dispatch(removeLikeFailure(err))
+      }
+      //! resp.bool ? dispatch(fetchPicsSuccess(resp.docs)) : dispatch(fetchPicsFailure(resp.docs))
+      /* dispatch(fetchPics()).then((response) => {
+        !response.error ? dispatch(fetchPicsSuccess(response.payload.data)) : dispatch(fetchPicsFailure(response.payload.data))
+      }) */
+    },
+    removeLike: async (pic) => {
+      try {
+        const resp = await dispatch(removeLike(pic)).payload
+        dispatch(removeLikeSuccess(resp.docs))
+      } catch (err) {
+        dispatch(postLikeFailure(err))
+      }
+      //! resp.bool ? dispatch(fetchPicsSuccess(resp.docs)) : dispatch(fetchPicsFailure(resp.docs))
+      /* dispatch(fetchPics()).then((response) => {
+        !response.error ? dispatch(fetchPicsSuccess(response.payload.data)) : dispatch(fetchPicsFailure(response.payload.data))
+      }) */
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pic)

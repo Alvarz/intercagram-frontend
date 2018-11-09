@@ -6,7 +6,6 @@ export default class Pic {
   constructor () {
     this.requester = new Requester()
     this.baseUrl = 'http://127.0.0.1:3000/api/pics'
-    this.baseUrlFeed = 'http://127.0.0.1:3000/api/feed'
   }
 
   /*
@@ -15,7 +14,7 @@ export default class Pic {
    *
    * */
   async get (id) {
-    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/${id}`))
+    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/like/${id}`))
     return response.data
   }
 
@@ -25,7 +24,7 @@ export default class Pic {
    *
    * */
   async fetch (page = 1) {
-    const [error, response ] = await to(this.requester.get(this.baseUrl))
+    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/like`))
     return response.data
     /* let [error, response] = await to()
 
@@ -41,15 +40,20 @@ export default class Pic {
    *
    *
    * */
-  async fetchFeed (page = 1) {
-    const [error, response ] = await to(this.requester.get(this.baseUrlFeed))
+  async post (data) {
+    console.log(data)
+    let pic = { pic: data._id }
+    const [error, response ] = await to(this.requester.post(`${this.baseUrl}/like`, pic))
     return response.data
-    /* let [error, response] = await to()
+  }
 
-    if (error) {
-      console.error(error)
-      return error
-    }
-    return response */
+  /*
+   *
+   *
+   *
+   * */
+  async remove (id) {
+    const [error, response ] = await to(this.requester.remove(`${this.baseUrl}/unlike/${id}`))
+    return response.data
   }
 }
