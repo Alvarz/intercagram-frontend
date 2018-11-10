@@ -13,8 +13,9 @@ export const REMOVE_LIKE = 'REMOVE_LIKE'
 export const REMOVE_LIKE_SUCCESS = 'REMOVE_LIKE_SUCCESS'
 export const REMOVE_LIKE_FAILURE = 'REMOVE_LIKE_FAILEDURE'
 /*
- *
- *
+ *  give like to a pic|
+ * @params {object} pic
+ * @return {object}
  * */
 export function postLike (pic) {
   const like = new Like()
@@ -26,8 +27,8 @@ export function postLike (pic) {
 }
 
 /*
- *
- *
+ * on sucess
+ * @return {object}
  * */
 export function postLikeSuccess () {
   return {
@@ -37,8 +38,9 @@ export function postLikeSuccess () {
 }
 
 /*
- *
- *
+ *  on error
+ * @params {object} error
+ * @return {object}
  * */
 export function postLikeFailure (error) {
   return {
@@ -47,8 +49,8 @@ export function postLikeFailure (error) {
   }
 }
 /*
- *
- *
+ *  fetch likes
+ * @return {object}
  * */
 export function fetchLike () {
   const pic = new Like()
@@ -60,8 +62,9 @@ export function fetchLike () {
 }
 
 /*
- *
- *
+ *  on success
+ * @params {array} pics
+ * @return {object}
  * */
 export function fetchLikeSuccess (pics) {
   return {
@@ -71,8 +74,9 @@ export function fetchLikeSuccess (pics) {
 }
 
 /*
- *
- *
+ *  on error
+ * @params {object} error
+ * @return {object}
  * */
 export function fetchLikeFailure (error) {
   return {
@@ -82,8 +86,9 @@ export function fetchLikeFailure (error) {
 }
 
 /*
- *
- *
+ *  unlike
+ * @params {object} pic
+ * @return {object}
  * */
 export function removeLike (pic) {
   const like = new Like()
@@ -95,8 +100,9 @@ export function removeLike (pic) {
 }
 
 /*
- *
- *
+ *  on success
+ * @params {object} data
+ * @return {object}
  * */
 export function removeLikeSuccess (data) {
   return {
@@ -106,8 +112,9 @@ export function removeLikeSuccess (data) {
 }
 
 /*
- *
- *
+ *  on error
+ * @params {object} data
+ * @return {object}
  * */
 export function removeLikeFailure (error) {
   return {

@@ -10,6 +10,11 @@ export default class Requester {
 */
   constructor () {
     this.config = {
+    /**
+     *
+     *   HEADER WAS HARDCODED TO TEST PURPOSES *
+     * */
+
       headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNWJlNTZiYmNlYmE2NjExN2Q4NWY0OGE0IiwiaWF0IjoxNTQxNzYyMTA1fQ.mn3RyStSORGpVRu7Gjp9-bGAd3Ug6ZNdJdl02UZSK-0' }
     }
     // Cabeceras
@@ -17,18 +22,8 @@ export default class Requester {
   }
 
   /**
- * metodo para obtener el dispatch y despachar acciones
- * @return { void }
- */
-  addDispatch (dispatch) {
-    this.dispatch = dispatch
-  }
-
-  /**
- * @desc Añade cabeceras a la request
- *
+ *  add headers
  * @param { Object } headersArray
- *
  * @return { Headers }
  */
   addHeaders (newHeaders = {}) {
@@ -42,10 +37,8 @@ export default class Requester {
   }
 
   /**
- * @desc
- *
+ * performa  get request
  * @param { String } endpoint
- *
  * @return { Promise }
  */
   async get (endpoint) {
@@ -58,7 +51,7 @@ export default class Requester {
   }
 
   /**
- * Metodo para hacer request post
+ * perfform a post
  * @param  { String } endpoint
  * @param  { Object } data
  * @return { Promise }
@@ -68,10 +61,8 @@ export default class Requester {
   }
 
   /**
- * @desc
- *
+ * perform a remove request
  * @param { String } endpoint
- *
  * @return { Promise }
  */
   async remove (endpoint) {

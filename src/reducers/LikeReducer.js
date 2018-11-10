@@ -11,8 +11,10 @@ const INITIAL_STATE = {
 }
 
 /*
- *
- *
+ * like reducer
+ * @params {object} state
+ * @params {object} action
+ * @return {object}
  * */
 const LikeReducer = (state = INITIAL_STATE, action) => {
   let error

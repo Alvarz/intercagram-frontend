@@ -11,8 +11,10 @@ const INITIAL_STATE = {
 }
 
 /*
- *
- *
+ * follow reducer
+ * @params {object} state
+ * @params {object} action
+ * @return {object}
  * */
 const followReducer = (state = INITIAL_STATE, action) => {
   let error

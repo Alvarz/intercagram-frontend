@@ -13,8 +13,9 @@ export const REMOVE_FOLLOW = 'REMOVE_FOLLOW'
 export const REMOVE_FOLLOW_SUCCESS = 'REMOVE_FOLLOW_SUCCESS'
 export const REMOVE_FOLLOW_FAILURE = 'REMOVE_FOLLOW_FAILEDURE'
 /*
- *
- *
+ * create new user action
+ * @param {object}
+ * @return {object}
  * */
 export function postFollow (user) {
   const follow = new Follow()
@@ -26,8 +27,8 @@ export function postFollow (user) {
 }
 
 /*
- *
- *
+ * on success
+ * @return {object}
  * */
 export function postFollowSuccess () {
   return {
@@ -37,8 +38,9 @@ export function postFollowSuccess () {
 }
 
 /*
- *
- *
+ * on error
+ * @param {object} error
+ * @return {object}
  * */
 export function postFollowFailure (error) {
   return {
@@ -47,8 +49,8 @@ export function postFollowFailure (error) {
   }
 }
 /*
- *
- *
+ * fetch follow
+ * @return {object}
  * */
 export function fetchFollow () {
   const user = new Follow()
@@ -60,8 +62,9 @@ export function fetchFollow () {
 }
 
 /*
- *
- *
+ * on sucess
+ * @params {array} users
+ * @return {object}
  * */
 export function fetchFollowSuccess (users) {
   return {
@@ -71,8 +74,9 @@ export function fetchFollowSuccess (users) {
 }
 
 /*
- *
- *
+ * on error
+ * @params {object} error
+ * @return {object}
  * */
 export function fetchFollowFailure (error) {
   return {
@@ -82,8 +86,9 @@ export function fetchFollowFailure (error) {
 }
 
 /*
- *
- *
+ * remove follow
+ * @params {object} user
+ * @return {object}
  * */
 export function removeFollow (user) {
   const follow = new Follow()
@@ -95,8 +100,9 @@ export function removeFollow (user) {
 }
 
 /*
- *
- *
+ *  on success
+ * @params {object} data
+ * @return {object}
  * */
 export function removeFollowSuccess (data) {
   return {
@@ -106,8 +112,9 @@ export function removeFollowSuccess (data) {
 }
 
 /*
- *
- *
+ *  on error
+ * @params {object} error
+ * @return {object}
  * */
 export function removeFollowFailure (error) {
   return {

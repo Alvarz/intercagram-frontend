@@ -4,6 +4,11 @@ import GalleryCtrl from './js/GalleryCtrl'
 import PicGallery from '../../components/picGallery/PicGallery'
 
 export default class Gallery extends GalleryCtrl {
+ 
+  /*
+   * constructor
+   *
+   * */
   constructor (props) {
     super(props)
 
@@ -12,6 +17,10 @@ export default class Gallery extends GalleryCtrl {
     this.withDesction = this.props.withDescription
   }
 
+  /*
+   * render
+   *
+   * */
   render () {
     return (
       <ul id='gallery' className='row'>

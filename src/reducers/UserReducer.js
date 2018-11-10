@@ -14,8 +14,10 @@ const INITIAL_STATE = {
 }
 
 /*
- *
- *
+ * user reducer
+ * @params {object} state
+ * @params {object} action
+ * @return {object}
  * */
 const userReducer = (state = INITIAL_STATE, action) => {
   let error

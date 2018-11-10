@@ -5,6 +5,11 @@ import FollowListCtrl from './js/FollowListCtrl'
 import FollowItem from '../followItem/FollowItem'
 
 export default class FollowList extends FollowListCtrl {
+ 
+  /*
+   * constructor
+   *
+   * */
   constructor (props) {
     super(props)
 
@@ -12,6 +17,10 @@ export default class FollowList extends FollowListCtrl {
     console.log(this.followsList, 'list')
   }
 
+  /*
+   * render
+   *
+   * */
   render () {
     return (
       <section>

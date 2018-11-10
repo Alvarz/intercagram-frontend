@@ -5,12 +5,21 @@ import CommentListCtrl from './js/CommentListCtrl'
 import Comment from '../comment/Comment'
 
 export default class CommentList extends CommentListCtrl {
+  
+  /*
+   * constructor
+   *
+   * */
   constructor (props) {
     super(props)
 
     this.comments = this.props.comments
   }
 
+  /*
+   * render
+   *
+   * */
   render () {
     return (
       <section>

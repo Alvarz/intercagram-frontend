@@ -4,12 +4,21 @@ import FollowItemCtrl from './js/FollowItemCtrl'
 import { Link } from 'react-router-dom'
 
 export default class FollowItem extends FollowItemCtrl {
+ 
+  /*
+   * constructor
+   *
+   * */
   constructor (props) {
     super(props)
 
     this.followItem = this.props.followItem
   }
 
+  /*
+   * render
+   *
+   * */
   render () {
     return (
       <div className='row'>

@@ -9,8 +9,10 @@ const INITIAL_STATE = {
 }
 
 /*
- *
- *
+ * feed reducer
+ * @params {object} state
+ * @params {object} action
+ * @return {object}
  * */
 const FeedReducer = (state = INITIAL_STATE, action) => {
   let error

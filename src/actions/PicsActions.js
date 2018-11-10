@@ -10,8 +10,9 @@ export const FETCH_PICS_SUCCESS = 'FETCH_PICS_SUCCESS'
 export const FETCH_PICS_FAILURE = 'FETCH_PICS_FAILEDURE'
 
 /*
- *
- *
+ *  get a pic
+ * @params {number} id
+ * @return {object}
  * */
 export function getPic (id) {
   const pic = new Pic()
@@ -23,8 +24,9 @@ export function getPic (id) {
 }
 
 /*
- *
- *
+ *  on success
+ * @params {object} pic
+ * @return {object}
  * */
 export function getPicSuccess (pic) {
   return {
@@ -34,8 +36,9 @@ export function getPicSuccess (pic) {
 }
 
 /*
- *
- *
+ *  on error
+ * @params {object} error
+ * @return {object}
  * */
 export function getPicFailure (error) {
   return {
@@ -45,8 +48,8 @@ export function getPicFailure (error) {
 }
 
 /*
- *
- *
+ *  fetch pics
+ * @return {object}
  * */
 export function fetchPics () {
   const pic = new Pic()
@@ -58,8 +61,9 @@ export function fetchPics () {
 }
 
 /*
- *
- *
+ *  on success
+ * @params {array} pics
+ * @return {object}
  * */
 export function fetchPicsSuccess (pics) {
   return {
@@ -69,8 +73,9 @@ export function fetchPicsSuccess (pics) {
 }
 
 /*
- *
- *
+ *  on error
+ * @params {object} error
+ * @return {object}
  * */
 export function fetchPicsFailure (error) {
   return {

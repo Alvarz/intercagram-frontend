@@ -9,6 +9,10 @@ import {
 } from '../../actions/LikeActions'
 
 class Pic extends PicCtrl {
+  /*
+   * constructor
+   *
+   * */
   constructor (props) {
     super(props)
     this.pic = this.props.pic
@@ -16,6 +20,10 @@ class Pic extends PicCtrl {
     this.withDescription = this.props.withDescription
   }
 
+  /*
+   * constructor
+   *
+   * */
   render () {
     let description, topDescription
     if (this.withDescription) {

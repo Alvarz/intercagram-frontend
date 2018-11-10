@@ -6,8 +6,8 @@ export const FETCH_FEED_SUCCESS = 'FETCH_FEED_SUCCESS'
 export const FETCH_FEED_FAILURE = 'FETCH_FEED_FAILEDURE'
 
 /*
- *
- *
+ * fetch action
+ * @return {object}
  * */
 export function fetchFeed () {
   const pic = new Pic()
@@ -19,8 +19,9 @@ export function fetchFeed () {
 }
 
 /*
- *
- *
+ * on success
+ * @param {Array} poics
+ * @return {object}
  * */
 export function fetchFeedSuccess (pics) {
   return {
@@ -30,8 +31,9 @@ export function fetchFeedSuccess (pics) {
 }
 
 /*
- *
- *
+ * on error
+ * @param {object} error
+ * @return {object}
  * */
 export function fetchFeedFailure (error) {
   return {

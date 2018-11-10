@@ -4,6 +4,11 @@ import HeaderCtrl from './js/HeaderCtrl'
 import { Link } from 'react-router-dom'
 
 export default class Header extends HeaderCtrl {
+ 
+  /*
+   * render
+   *
+   * */
   render () {
     return (
       <header>

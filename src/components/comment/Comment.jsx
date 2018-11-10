@@ -4,12 +4,21 @@ import CommentCtrl from './js/CommentCtrl'
 import { Link } from 'react-router-dom'
 
 export default class Comment extends CommentCtrl {
+ 
+  /*
+   * constructor
+   *
+   * */
   constructor (props) {
     super(props)
 
     this.comment = this.props.comment
   }
 
+  /*
+   * render method
+   *
+   * */
   render () {
     return (
       <div className='row'>

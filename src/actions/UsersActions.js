@@ -13,8 +13,9 @@ export const FETCH_USERS_PICS = 'FETCH_USERS_PICS'
 export const FETCH_USERS_PICS_SUCCESS = 'FETCH_USERS_PICS_SUCCESS'
 export const FETCH_USERS_PICS_FAILURE = 'FETCH_USERS_PICS_FAILURE'
 /*
- *
- *
+ * get user
+ * @params {number} id
+ * @return {object}
  * */
 export function getUser (id) {
   const user = new User()
@@ -26,8 +27,9 @@ export function getUser (id) {
 }
 
 /*
- *
- *
+ * on success
+ * @params {object} user
+ * @return {object}
  * */
 export function getUserSuccess (user) {
   return {
@@ -37,8 +39,9 @@ export function getUserSuccess (user) {
 }
 
 /*
- *
- *
+ * on error
+ * @params {object} error
+ * @return {object}
  * */
 export function getUserFailure (error) {
   return {
@@ -48,8 +51,8 @@ export function getUserFailure (error) {
 }
 
 /*
- *
- *
+ * fetch users
+ * @return {object}
  * */
 export function fetchUsers () {
   const user = new User()
@@ -61,8 +64,9 @@ export function fetchUsers () {
 }
 
 /*
- *
- *
+ * on success
+ * @params {array} users
+ * @return {object}
  * */
 export function fetchUsersSuccess (users) {
   return {
@@ -72,8 +76,9 @@ export function fetchUsersSuccess (users) {
 }
 
 /*
- *
- *
+ * on error
+ * @params {object} error
+ * @return {object}
  * */
 export function fetchUsersFailure (error) {
   return {
@@ -83,8 +88,9 @@ export function fetchUsersFailure (error) {
 }
 
 /*
- *
- *
+ * fetch user pics
+ * @params {number} id
+ * @return {object}
  * */
 export function fetchUserPics (id) {
   const user = new User()
@@ -96,8 +102,9 @@ export function fetchUserPics (id) {
 }
 
 /*
- *
- *
+ * on success
+ * @params {array} pics|
+ * @return {object}
  * */
 export function fetchUserPicsSuccess (pics) {
   return {
@@ -107,8 +114,9 @@ export function fetchUserPicsSuccess (pics) {
 }
 
 /*
- *
- *
+ * on error
+ * @params {object} error
+ * @return {object}
  * */
 export function fetchUserPicsFailure (error) {
   return {

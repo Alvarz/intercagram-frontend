@@ -10,8 +10,10 @@ const INITIAL_STATE = {
 }
 
 /*
- *
- *
+ * pic reducer
+ * @params {object} state
+ * @params {object} action
+ * @return {object}
  * */
 const PicReducer = (state = INITIAL_STATE, action) => {
   let error
