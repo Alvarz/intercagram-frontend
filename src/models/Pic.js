@@ -8,8 +8,11 @@ export default class Pic {
    */
   constructor () {
     this.requester = new Requester()
-    this.baseUrl = 'http://127.0.0.1:3000/api/pics'
-    this.baseUrlFeed = 'http://127.0.0.1:3000/api/feed'
+
+    console.log(process.env)
+
+    this.baseUrl = `${process.env.REACT_APP_BACKEND_API}/pics`
+    this.baseUrlFeed = `${process.env.REACT_APP_BACKEND_API}/feed`
   }
 
   /*
@@ -55,7 +58,7 @@ export default class Pic {
    * @return {promise}
    * */
   async fetchFeed (page = 1) {
-    const [error, response ] = await to(this.requester.get(this.baseUrlFeed))
+    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/feed`))
     if (error) return error
     return response.data
   }

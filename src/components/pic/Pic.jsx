@@ -33,7 +33,7 @@ class Pic extends PicCtrl {
           <div className='col'>
             <div className='comment-thumbnail-container' >
               <Link className='' to={`/profile/${this.pic.user._id}`} >
-                <img className='rounded-circle thumb-comment img-thumbnail' src='https://image.shutterstock.com/image-vector/female-profile-picture-placeholder-vector-260nw-450966937.jpg' alt='alt' />
+                <img className='rounded-circle thumb-comment img-thumbnail' src={this.pic.user.profilePic} alt='alt' />
               </Link>
             </div>
             <div className='col comment-textbox'>

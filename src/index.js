@@ -10,6 +10,7 @@ import Routes from './router/routes'
 import { config } from 'dotenv'
 import './index.scss'
 import store, { history } from './store/store'
+require('dotenv').config()
 // import App from './App'
 
 /**

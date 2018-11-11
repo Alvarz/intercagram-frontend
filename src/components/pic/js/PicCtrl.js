@@ -13,6 +13,7 @@ export default class PicCtrl extends Component {
     this.pic.wasLikedByUser = false
     this.pic.likes--
     console.log('unlike')
+    this.forceUpdate()
   }
   /*
    * like a pic
@@ -26,6 +27,7 @@ export default class PicCtrl extends Component {
     this.pic.wasLikedByUser = true
     this.pic.likes++
     console.log('like')
+    this.forceUpdate()
   }
 
   /*

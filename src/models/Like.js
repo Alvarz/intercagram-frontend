@@ -8,40 +8,42 @@ export default class Like {
    */
   constructor () {
     this.requester = new Requester()
-    this.baseUrl = 'http://127.0.0.1:3000/api/pics'
+    this.baseUrl = `${process.env.REACT_APP_BACKEND_API}/pics`
   }
 
   /*
    * get the like of given pic id
+   * @async
    * @param {number} id
    * @return {promise}
    * */
   async get (id) {
-    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/like/${id}`))
+    const [ error, response ] = await to(this.requester.get(`${this.baseUrl}/like/${id}`))
     if (error) return error
     return response.data
   }
 
   /*
    * fetch likes
+   * @async
    * @param {number} page
    * @return {promise}
    * */
   async fetch (page = 1) {
-    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/like`))
+    const [ error, response ] = await to(this.requester.get(`${this.baseUrl}/like`))
     if (error) return error
     return response.data
   }
 
   /*
    * like a user
+   * @async
    * @param {object} data
    * @return {promise}
    * */
   async post (data) {
-    console.log(data)
     let pic = { pic: data._id }
-    const [error, response ] = await to(this.requester.post(`${this.baseUrl}/like`, pic))
+    const [ error, response ] = await to(this.requester.post(`${this.baseUrl}/like`, pic))
     if (error) return error
     return response.data
   }

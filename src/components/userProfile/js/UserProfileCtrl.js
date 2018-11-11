@@ -5,7 +5,8 @@ export default class UserProfileCtrl extends Component {
    * constructor
    * @see https://reactjs.org/docs/react-component.html#constructor
    * */
-  constructor () {
+  constructor (props) {
+    super(props)
     this.user = this.props.user
     this.profilePic = (this.user.profilePic) ? this.user.profilePic : 'https://via.placeholder.com/450'
   }

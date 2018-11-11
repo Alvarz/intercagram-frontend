@@ -5,7 +5,8 @@ export default class SearchCtrl extends Component {
    * constructor
    * @see https://reactjs.org/docs/react-component.html#constructor
    * */
-  constructor () {
+  constructor (props) {
+    super(props)
     this.pics = []
     this.areSearchResult = false
     this.totalImage = 20

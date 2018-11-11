@@ -36,7 +36,7 @@ export function fetchFeedSuccess (pics) {
  * @return {object}
  * */
 export function fetchFeedFailure (err, resp) {
-  const error = err || resp.error
+  const error = err
   console.warn(error)
   return {
     type: FETCH_FEED_FAILURE,

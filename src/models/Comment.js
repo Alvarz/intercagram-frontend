@@ -8,7 +8,7 @@ export default class Comment {
    */
   constructor () {
     this.requester = new Requester()
-    this.baseUrl = 'http://127.0.0.1:3000/api/comments'
+    this.baseUrl = `${process.env.REACT_APP_BACKEND_API}/comments`
   }
 
   /*

@@ -5,7 +5,8 @@ export default class ProfileCtrl extends Component {
    * constructor
    * @see https://reactjs.org/docs/react-component.html#constructor
    * */
-  constructor () {
+  constructor (props) {
+    super(props)
     this.totalImage = 20
     this.pics = []
     let id = this.props.match.params.id
