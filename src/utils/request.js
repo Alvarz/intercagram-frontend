@@ -15,7 +15,7 @@ export default class Requester {
      *   HEADER WAS HARDCODED TO TEST PURPOSES *
      * */
 
-      headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNWJlNTZiYmNlYmE2NjExN2Q4NWY0OGE0IiwiaWF0IjoxNTQxNzYyMTA1fQ.mn3RyStSORGpVRu7Gjp9-bGAd3Ug6ZNdJdl02UZSK-0' }
+      headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNWJlNzBjNTU4ZWE0YTQzMTI0NDA4MGMyIiwiaWF0IjoxNTQxODY4NzU5fQ.mbtF3X6qT5yb20-FaOnWDaW3ban5j21a04_wE3WnkzA' }
     }
     // Cabeceras
     this.dispatch = false

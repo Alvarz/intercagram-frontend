@@ -1,9 +1,13 @@
 
 import Follow from '../models/Follow'
 
-export const FETCH_FOLLOW = 'FETCH_FOLLOW'
-export const FETCH_FOLLOW_SUCCESS = 'FETCH_FOLLOW_SUCCESS'
-export const FETCH_FOLLOW_FAILURE = 'FETCH_FOLLOW_FAILEDURE'
+export const FETCH_FOLLOWING = 'FETCH_FOLLOWING'
+export const FETCH_FOLLOWING_SUCCESS = 'FETCH_FOLLOWING_SUCCESS'
+export const FETCH_FOLLOWING_FAILURE = 'FETCH_FOLLOWING_FAILEDURE'
+
+export const FETCH_FOLLOWERS = 'FETCH_FOLLOWERS'
+export const FETCH_FOLLOWERS_SUCCESS = 'FETCH_FOLLOWERS_SUCCESS'
+export const FETCH_FOLLOWERS_FAILURE = 'FETCH_FOLLOWERS_FAILEDURE'
 
 export const POST_FOLLOW = 'POST_FOLLOW'
 export const POST_FOLLOW_SUCCESS = 'POST_FOLLOW_SUCCESS'
@@ -12,6 +16,15 @@ export const POST_FOLLOW_FAILURE = 'POST_FOLLOW_FAILEDURE'
 export const REMOVE_FOLLOW = 'REMOVE_FOLLOW'
 export const REMOVE_FOLLOW_SUCCESS = 'REMOVE_FOLLOW_SUCCESS'
 export const REMOVE_FOLLOW_FAILURE = 'REMOVE_FOLLOW_FAILEDURE'
+
+export const IS_FOLLOWER = 'IS_FOLLOWER'
+
+export function isFollower (isFollower) {
+  return {
+    type: IS_FOLLOWER,
+    payload: isFollower
+  }
+}
 /*
  * create new user action
  * @param {object}
@@ -21,7 +34,7 @@ export function postFollow (user) {
   const follow = new Follow()
 
   return {
-    type: FETCH_FOLLOW,
+    type: POST_FOLLOW,
     payload: follow.post(user)
   }
 }
@@ -32,7 +45,7 @@ export function postFollow (user) {
  * */
 export function postFollowSuccess () {
   return {
-    type: FETCH_FOLLOW_SUCCESS,
+    type: POST_FOLLOW_SUCCESS,
     payload: {}
   }
 }
@@ -42,22 +55,25 @@ export function postFollowSuccess () {
  * @param {object} error
  * @return {object}
  * */
-export function postFollowFailure (error) {
+export function postFollowFailure (err, resp) {
+  const error = err || resp.error
   return {
-    type: FETCH_FOLLOW_FAILURE,
+    type: POST_FOLLOW_FAILURE,
     payload: error
   }
 }
+
+/*
 /*
  * fetch follow
  * @return {object}
  * */
-export function fetchFollow () {
-  const user = new Follow()
+export function fetchFollowing (id) {
+  const follow = new Follow()
 
   return {
-    type: FETCH_FOLLOW,
-    payload: user.fetchFollow()
+    type: FETCH_FOLLOWING,
+    payload: follow.fetchFollowing(id)
   }
 }
 
@@ -66,9 +82,9 @@ export function fetchFollow () {
  * @params {array} users
  * @return {object}
  * */
-export function fetchFollowSuccess (users) {
+export function fetchFollowingSuccess (users) {
   return {
-    type: FETCH_FOLLOW_SUCCESS,
+    type: FETCH_FOLLOWING_SUCCESS,
     payload: users
   }
 }
@@ -78,9 +94,48 @@ export function fetchFollowSuccess (users) {
  * @params {object} error
  * @return {object}
  * */
-export function fetchFollowFailure (error) {
+export function fetchFollowingFailure (err, resp) {
+  const error = err
   return {
-    type: FETCH_FOLLOW_FAILURE,
+    type: FETCH_FOLLOWING_FAILURE,
+    payload: error
+  }
+}
+
+/*
+ * fetch follow
+ * @return {object}
+ * */
+export function fetchFollowers (id) {
+  const follow = new Follow()
+
+  return {
+    type: FETCH_FOLLOWERS,
+    payload: follow.fetchFollowers(id)
+  }
+}
+
+/*
+ * on sucess
+ * @params {array} users
+ * @return {object}
+ * */
+export function fetchFollowersSuccess (users) {
+  return {
+    type: FETCH_FOLLOWERS_SUCCESS,
+    payload: users
+  }
+}
+
+/*
+ * on error
+ * @params {object} error
+ * @return {object}
+ * */
+export function fetchFollowersFailure (err, resp) {
+  const error = err
+  return {
+    type: FETCH_FOLLOWERS_FAILURE,
     payload: error
   }
 }
@@ -116,7 +171,8 @@ export function removeFollowSuccess (data) {
  * @params {object} error
  * @return {object}
  * */
-export function removeFollowFailure (error) {
+export function removeFollowFailure (err, resp) {
+  const error = err || resp.error
   return {
     type: REMOVE_FOLLOW_FAILURE,
     payload: error

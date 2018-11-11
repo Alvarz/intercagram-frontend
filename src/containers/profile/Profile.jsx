@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './css/Profile.scss'
+import to from '../../utils/to'
 import ProfileCtrl from './js/ProfileCtrl'
 import UserProfile from '../../components/userProfile/UserProfile'
 import Gallery from '../../components/gallery/Gallery'
@@ -13,35 +14,6 @@ import {
  * Profile class
  */
 class Profile extends ProfileCtrl {
-  constructor (props) {
-    super(props)
-
-    this.pics = []
-
-    /*   this.user = {
-      id: 1,
-      name: 'Jane',
-      lastname: 'Doe',
-      email: 'jane@jane.com',
-      username: 'therealjanedoe',
-      description: 'this is the cool me'
-    }
-
-    this.pic = {
-      id: 0,
-      url: 'https://via.placeholder.com/450',
-      description: 'loren ipsum',
-      likes: 12,
-      commentsQty: 6,
-      user: this.user
-    }
-    for (let i = 1; i < 20; i++) {
-      this.pic.id = i
-      this.pics.push(this.pic)
-    }
-
-    this.description = false */
-  }
   /*
    * life cicle react's method
    */
@@ -63,6 +35,11 @@ class Profile extends ProfileCtrl {
   }
 }
 
+/*
+ * map state to props
+ * @param {object} state
+ * @return {object}
+ */
 const mapStateToProps = (state) => {
   return {
     user: state.UserReducer.user.user,
@@ -70,25 +47,41 @@ const mapStateToProps = (state) => {
   }
 }
 
+/*
+ * map dispatch to props
+ * @param {function} dispatch
+ * @return {object}
+ */
 const mapDispatchToProps = (dispatch) => {
   return {
+    /*
+     * get user of given id
+     * @param {number} id
+     * @return {void}
+     * */
     getUser: async (id) => {
-      try {
-        const user = await dispatch(getUser(id)).payload
-        dispatch(getUserSuccess(user))
-      } catch (err) {
-        dispatch(getUserFailure(err))
+      let [err, user] = await to(dispatch(getUser(id)).payload)
+      if (err) {
+        dispatch(getUserFailure(err, user))
+        return
       }
+      dispatch(getUserSuccess(user))
     },
+
+    /*
+     * get fetch pics of given id
+     * @param {number} id
+     * @return {void}
+     * */
     fetchUserPics: async (id) => {
-      try {
-        const resp = await dispatch(fetchUserPics(id)).payload
-        dispatch(fetchUserPicsSuccess(resp))
-      } catch (err) {
-        dispatch(fetchUserPicsFailure(err))
+      const [err, resp] = await to(dispatch(fetchUserPics(id)).payload)
+      if (err || !resp) {
+        dispatch(fetchUserPicsFailure(err, resp))
+        return
       }
+      dispatch(fetchUserPicsSuccess(resp))
     }
   }
 }
-
+/** export class with redux connect */
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

@@ -1,14 +1,12 @@
 import React from 'react'
 import './css/CommentList.scss'
 import CommentListCtrl from './js/CommentListCtrl'
-
 import Comment from '../comment/Comment'
 
 export default class CommentList extends CommentListCtrl {
-  
   /*
    * constructor
-   *
+   * @see https://reactjs.org/docs/react-component.html#constructor
    * */
   constructor (props) {
     super(props)
@@ -17,8 +15,8 @@ export default class CommentList extends CommentListCtrl {
   }
 
   /*
-   * render
-   *
+   * the method render is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#render
    * */
   render () {
     return (

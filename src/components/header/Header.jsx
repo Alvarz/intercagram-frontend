@@ -2,12 +2,12 @@ import React from 'react'
 import './css/Header.scss'
 import HeaderCtrl from './js/HeaderCtrl'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default class Header extends HeaderCtrl {
- 
+class Header extends HeaderCtrl {
   /*
-   * render
-   *
+   * the method render is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#render
    * */
   render () {
     return (
@@ -27,7 +27,7 @@ export default class Header extends HeaderCtrl {
               <Link className='nav-link' to='/upload'><i className='fas fa-lg fa-camera' /></Link>
             </li>
             <li className='nav-item col-xs'>
-              <Link className='nav-link' to='/profile/1'><i className='fas fa-lg fa-user' /></Link>
+              <Link className='nav-link' to={`/profile/${this.props.me._id}`}><i className='fas fa-lg fa-user' /></Link>
             </li>
           </ul>
         </nav>
@@ -35,3 +35,15 @@ export default class Header extends HeaderCtrl {
     )
   }
 }
+/*
+ * map state to props
+ * @param {object} state
+ * @return {void}
+ */
+const mapStateToProps = (state) => {
+  return {
+    me: state.UserReducer.me.user
+  }
+}
+/** class export with redux connect */
+export default connect(mapStateToProps, null)(Header)

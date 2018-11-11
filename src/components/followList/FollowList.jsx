@@ -5,21 +5,21 @@ import FollowListCtrl from './js/FollowListCtrl'
 import FollowItem from '../followItem/FollowItem'
 
 export default class FollowList extends FollowListCtrl {
- 
   /*
    * constructor
-   *
+   * @see https://reactjs.org/docs/react-component.html#constructor
    * */
   constructor (props) {
     super(props)
 
     this.followList = this.props.followList
-    console.log(this.followsList, 'list')
+
+    console.log(this.followList)
   }
 
   /*
-   * render
-   *
+   * the method render is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#render
    * */
   render () {
     return (

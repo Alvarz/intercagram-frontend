@@ -3,6 +3,10 @@ import './css/UploadPic.scss'
 import UploadPicCtrl from './js/UploadPicCtrl'
 
 export default class UploadPic extends UploadPicCtrl {
+  /*
+   * constructor
+   * @see https://reactjs.org/docs/react-component.html#constructor
+   * */
   render () {
     return (
       <div className='row '>

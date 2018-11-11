@@ -3,13 +3,15 @@
 import {
   FETCH_USERS, FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE,
   FETCH_USERS_PICS, FETCH_USERS_PICS_SUCCESS, FETCH_USERS_PICS_FAILURE,
-  GET_USER, GET_USER_SUCCESS, GET_USER_FAILURE
+  GET_USER, GET_USER_SUCCESS, GET_USER_FAILURE,
+  GET_ME, GET_ME_SUCCESS, GET_ME_FAILURE
 } from '../actions/UsersActions'
 
 /**    var  */
 const INITIAL_STATE = {
   usersList: { users: [], error: null, loading: false },
   user: { user: {}, error: null, loading: false },
+  me: { user: {}, error: null, loading: false },
   picList: { pics: [], error: null, loading: false }
 }
 
@@ -23,6 +25,17 @@ const userReducer = (state = INITIAL_STATE, action) => {
   let error
 
   switch (action.type) {
+    /*
+       * GET ME
+       *
+       * */
+    case GET_ME:
+      return { ...state, me: { user: {}, error: null, loading: true } }
+    case GET_ME_SUCCESS:
+      return { ...state, me: { user: action.payload, error: null, loading: true } }
+    case GET_ME_FAILURE:
+      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
+      return { ...state, me: { user: {}, error: error, loading: false } }
     /*
        * FETCH
        *
@@ -57,6 +70,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case GET_USER_FAILURE:
       error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
       return { ...state, user: { user: {}, error: error, loading: false } }
+
     default:
       return state
   }

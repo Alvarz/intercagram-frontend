@@ -1,6 +1,10 @@
 
 import User from '../models/User'
 
+export const GET_ME = 'GET_ME'
+export const GET_ME_SUCCESS = 'GET_ME_SUCCESS'
+export const GET_ME_FAILURE = 'GET_ME_FAILEDURE'
+
 export const GET_USER = 'GET_USER'
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
 export const GET_USER_FAILURE = 'GET_USER_FAILEDURE'
@@ -12,6 +16,45 @@ export const FETCH_USERS_FAILURE = 'FETCH_USERS_FAILEDURE'
 export const FETCH_USERS_PICS = 'FETCH_USERS_PICS'
 export const FETCH_USERS_PICS_SUCCESS = 'FETCH_USERS_PICS_SUCCESS'
 export const FETCH_USERS_PICS_FAILURE = 'FETCH_USERS_PICS_FAILURE'
+
+/*
+ * get logged in data
+ * @return {object}
+ * */
+export function getMe () {
+  const user = new User()
+
+  return {
+    type: GET_ME,
+    payload: user.getMe()
+  }
+}
+
+/*
+ * on success
+ * @params {object} user
+ * @return {object}
+ * */
+export function getMeSuccess (user) {
+  return {
+    type: GET_ME_SUCCESS,
+    payload: user
+  }
+}
+
+/*
+ * on error
+ * @params {object} error
+ * @return {object}
+ * */
+export function getMeFailure (err, resp) {
+  const error = err
+  return {
+    type: GET_ME_FAILURE,
+    payload: error
+  }
+}
+
 /*
  * get user
  * @params {number} id
@@ -43,7 +86,8 @@ export function getUserSuccess (user) {
  * @params {object} error
  * @return {object}
  * */
-export function getUserFailure (error) {
+export function getUserFailure (err, resp) {
+  const error = err
   return {
     type: GET_USER_FAILURE,
     payload: error
@@ -80,7 +124,8 @@ export function fetchUsersSuccess (users) {
  * @params {object} error
  * @return {object}
  * */
-export function fetchUsersFailure (error) {
+export function fetchUsersFailure (err, resp) {
+  const error = err || resp.error
   return {
     type: FETCH_USERS_FAILURE,
     payload: error
@@ -118,7 +163,8 @@ export function fetchUserPicsSuccess (pics) {
  * @params {object} error
  * @return {object}
  * */
-export function fetchUserPicsFailure (error) {
+export function fetchUserPicsFailure (err, resp) {
+  const error = err
   return {
     type: FETCH_USERS_PICS_FAILURE,
     payload: error

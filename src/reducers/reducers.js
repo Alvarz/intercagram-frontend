@@ -11,6 +11,8 @@ import PicReducer from './PicReducer'
 import FeedReducer from './FeedReducer'
 import LikeReducer from './LikeReducer'
 import UserReducer from './UserReducer'
+import FollowReducer from './FollowReducer'
+import SearchReducer from './SearchReducer'
 
 /**
  * @desc Export the reducers
@@ -20,5 +22,7 @@ export default (history) => combineReducers({
   PicReducer,
   FeedReducer,
   LikeReducer,
-  UserReducer
+  UserReducer,
+  FollowReducer,
+  SearchReducer
 })

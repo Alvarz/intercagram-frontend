@@ -26,9 +26,9 @@ const PicReducer = (state = INITIAL_STATE, action) => {
     case FETCH_PICS:
       return { ...state, picsList: { pics: [], error: null, loading: true } }
     case FETCH_PICS_SUCCESS:
-      return { ...state, picsList: { pics: action.payload, error: null, loading: true } }
+      return { ...state, picsList: { pics: action.payload, error: null, loading: false } }
     case FETCH_PICS_FAILURE:
-      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
+      error = action.payload /* || { message: action.payload.message }// 2nd one is network or server down errors */
       return { ...state, picsList: { pics: [], error: error, loading: false } }
 
       /*
@@ -38,9 +38,9 @@ const PicReducer = (state = INITIAL_STATE, action) => {
     case GET_PIC:
       return { ...state, pic: { pic: {}, error: null, loading: true } }
     case GET_PIC_SUCCESS:
-      return { ...state, pic: { pic: action.payload, error: null, loading: true } }
+      return { ...state, pic: { pic: action.payload, error: null, loading: false } }
     case GET_PIC_FAILURE:
-      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
+      error = action.payload /* || { message: action.payload.message }// 2nd one is network or server down errors */
       return { ...state, pic: { pic: {}, error: error, loading: false } }
     default:
       return state

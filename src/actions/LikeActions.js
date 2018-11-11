@@ -19,7 +19,6 @@ export const REMOVE_LIKE_FAILURE = 'REMOVE_LIKE_FAILEDURE'
  * */
 export function postLike (pic) {
   const like = new Like()
-
   return {
     type: FETCH_LIKE,
     payload: like.post(pic)
@@ -42,7 +41,8 @@ export function postLikeSuccess () {
  * @params {object} error
  * @return {object}
  * */
-export function postLikeFailure (error) {
+export function postLikeFailure (err, resp) {
+  const error = err || resp.error
   return {
     type: FETCH_LIKE_FAILURE,
     payload: error
@@ -78,7 +78,8 @@ export function fetchLikeSuccess (pics) {
  * @params {object} error
  * @return {object}
  * */
-export function fetchLikeFailure (error) {
+export function fetchLikeFailure (err, resp) {
+  const error = err || resp.error
   return {
     type: FETCH_LIKE_FAILURE,
     payload: error
@@ -116,7 +117,8 @@ export function removeLikeSuccess (data) {
  * @params {object} data
  * @return {object}
  * */
-export function removeLikeFailure (error) {
+export function removeLikeFailure (err, resp) {
+  const error = err || resp.error
   return {
     type: REMOVE_LIKE_FAILURE,
     payload: error

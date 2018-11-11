@@ -2,57 +2,55 @@
 import Requester from '../utils/request'
 import to from '../utils/to'
 
-export default class Like {
+export default class Comment {
   /*
    * class constructor
    */
   constructor () {
     this.requester = new Requester()
-    this.baseUrl = 'http://127.0.0.1:3000/api/pics'
+    this.baseUrl = 'http://127.0.0.1:3000/api/comments'
   }
 
   /*
-   * get the like of given pic id
+   * get the comment of given pic id
    * @param {number} id
    * @return {promise}
    * */
   async get (id) {
-    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/like/${id}`))
+    const [ error, response ] = await to(this.requester.get(`${this.baseUrl}/${id}`))
     if (error) return error
     return response.data
   }
 
   /*
-   * fetch likes
+   * fetch the comment of given pic id
    * @param {number} page
    * @return {promise}
    * */
   async fetch (page = 1) {
-    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/like`))
+    const [ error, response ] = await to(this.requester.get(`${this.baseUrl}`))
     if (error) return error
     return response.data
   }
 
   /*
-   * like a user
-   * @param {object} data
+   * post a new comment
+   * @param {object} comment
    * @return {promise}
    * */
-  async post (data) {
-    console.log(data)
-    let pic = { pic: data._id }
-    const [error, response ] = await to(this.requester.post(`${this.baseUrl}/like`, pic))
+  async post (comment) {
+    const [ error, response ] = await to(this.requester.post(`${this.baseUrl}`, comment))
     if (error) return error
     return response.data
   }
 
   /*
-   * remove a user
+   * remove a comment
    * @param {number} id
    * @return {promise}
    * */
   async remove (id) {
-    const [error, response ] = await to(this.requester.remove(`${this.baseUrl}/unlike/${id}`))
+    const [ error, response ] = await to(this.requester.remove(`${this.baseUrl}/uncomment/${id}`))
     if (error) return error
     return response.data
   }

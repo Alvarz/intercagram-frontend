@@ -8,8 +8,9 @@ import UploadPic from '../../components/uploadPic/UploadPic'
  */
 export default class Upload extends UploadCtrl {
   /*
-   * life cicle react's method
-   */
+   * the method render is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#render
+   * */
   render () {
     return (
       <div className='margin-top-10 margin-bottom-50'>

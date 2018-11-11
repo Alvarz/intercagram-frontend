@@ -29,7 +29,7 @@ const LikeReducer = (state = INITIAL_STATE, action) => {
     case FETCH_LIKE_SUCCESS:
       return { ...state, like: { likes: action.payload, error: null, loading: true } }
     case FETCH_LIKE_FAILURE:
-      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
+      error = action.payload /* || { message: action.payload.message }// 2nd one is network or server down errors- */
       return { ...state, like: { likes: [], error: error, loading: false } }
 
     /*
@@ -37,24 +37,24 @@ const LikeReducer = (state = INITIAL_STATE, action) => {
        *
        * */
     case POST_LIKE:
-      return { ...state, like: { like: null, error: null, loading: true } }
+      return { ...state, res: { like: null, error: null, loading: true } }
     case POST_LIKE_SUCCESS:
-      return { ...state, like: { likes: action.payload, error: null, loading: true } }
+      return { ...state, res: { likes: action.payload, error: null, loading: true } }
     case POST_LIKE_FAILURE:
-      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
-      return { ...state, like: { likes: {}, error: error, loading: false } }
+      error = action.payload /* || { message: action.payload.message }// 2nd one is network or server down errors- */
+      return { ...state, res: { likes: {}, error: error, loading: false } }
 
     /*
        * REMOVE
        *
        * */
     case REMOVE_LIKE:
-      return { ...state, like: { like: null, error: null, loading: true } }
+      return { ...state, res: { like: null, error: null, loading: true } }
     case REMOVE_LIKE_SUCCESS:
-      return { ...state, like: { likes: action.payload, error: null, loading: true } }
+      return { ...state, res: { likes: action.payload, error: null, loading: true } }
     case REMOVE_LIKE_FAILURE:
-      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
-      return { ...state, like: { likes: {}, error: error, loading: false } }
+      error = action.payload /* || { message: action.payload.message }// 2nd one is network or server down errors- */
+      return { ...state, res: { likes: {}, error: error, loading: false } }
 
     default:
       return state

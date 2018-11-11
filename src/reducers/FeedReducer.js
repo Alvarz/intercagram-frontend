@@ -27,7 +27,7 @@ const FeedReducer = (state = INITIAL_STATE, action) => {
     case FETCH_FEED_SUCCESS:
       return { ...state, feed: { pics: action.payload, error: null, loading: true } }
     case FETCH_FEED_FAILURE:
-      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
+      error = action.payload /* || { message: action.payload.message }// 2nd one is network or server down errors */
       return { ...state, feed: { pics: [], error: error, loading: false } }
 
     default:

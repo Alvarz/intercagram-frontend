@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './css/UserProfile.scss'
+import to from '../../utils/to'
 import UserProfileCtrl from './js/UserProfileCtrl'
 import { Link } from 'react-router-dom'
 import {
@@ -9,16 +10,42 @@ import {
 } from '../../actions/FollowActions'
 
 class UserProfile extends UserProfileCtrl {
-  constructor (props) {
-    super(props)
-    this.user = this.props.user
+  /*
+   * follow btn renderer
+   * @return {html{}
+   * */
+  btnFollow () {
+    return (<button onClick={(e) => this.follow(e, this.user)} type='button' className='btn btn-outline-primary btn-lg'>Follow</button>)
   }
 
+  /*
+   * unfollow btn renderer
+   * @return {html{}
+   * */
+  btnUnFollow () {
+    return (<button onClick={(e) => this.unfollow(e, this.user)} type='button' className='btn btn-primary btn-lg'>Following</button>)
+  }
+
+  /*
+   * pick the proper btn
+   * @return {html{}
+   * */
+  renderFollowBtn () {
+    if (this.props.me._id !== this.user._id) {
+      if (this.user.wasFollowedByUser) { return this.btnUnFollow() } else { return this.btnFollow() }
+    }
+    return (<button className='btn btn-outline-primary disabled btn-lg' disabled>It's you!</button>)
+  }
+
+  /*
+   * the method render is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#render
+   * */
   render () {
     return (
       <div className='row'>
         <div className='avatar' >
-          <img className='img-thumbnail avatar-md avatar rounded-circle' src='https://via.placeholder.com/450' alt='profile_pic' />
+          <img className='img-thumbnail avatar-md avatar rounded-circle' src={this.profilePic} alt='profile_pic' />
         </div>
         <div className='col information'>
           <div className='row'>
@@ -30,7 +57,6 @@ class UserProfile extends UserProfileCtrl {
             </div>
             <div className='col-md-6'>
               <ul className='row '>
-
                 <li className='col'>
                   <Link to={`/followers/${this.user._id}`}>
                     <span className='br'>{this.user.followers.length} </span>
@@ -44,8 +70,7 @@ class UserProfile extends UserProfileCtrl {
                   </Link>
                 </li>
               </ul>
-              {(this.user.wasFollowedByUser) ? <button onClick={(e) => this.unfollow(e, this.user)} type='button' className='btn btn-primary btn-lg'>Following</button> : <button onClick={(e) => this.follow(e, this.user)} type='button' className='btn btn-outline-primary btn-lg'>Follow</button>}
-
+              {this.renderFollowBtn()}
             </div>
             <div className='w-100' />
             <div className='align-left col-12 d-none d-md-block'>
@@ -53,7 +78,6 @@ class UserProfile extends UserProfileCtrl {
             </div>
           </div>
         </div>
-
         <div className='col-12 d-block d-md-none d-lg-none'>
           <div className='row'>
             <div className='align-left col-12'>
@@ -71,32 +95,53 @@ class UserProfile extends UserProfileCtrl {
     )
   }
 }
-
+/*
+ * map state to props
+ * @param {object} state
+ * @return {object}
+ **/
 const mapStateToProps = (state) => {
   return {
-    likeList: state.LikeReducer.like
+    me: state.UserReducer.me.user
   }
 }
 
+/*
+ * map dispatch to props
+ * @param {function} dispatch
+ * @return {void}
+ **/
 const mapDispatchToProps = (dispatch) => {
   return {
+    /*
+     * follow a user
+     * @async
+     * @param {object} user
+     * @return {void}
+     */
     postFollow: async (user) => {
-      try {
-        const resp = await dispatch(postFollow(user)).payload
-        dispatch(postFollowSuccess(resp))
-      } catch (err) {
-        dispatch(postFollowFailure(err))
+      const [err, resp] = await to(dispatch(postFollow(user)).payload)
+      if (err || !resp) {
+        dispatch(postFollowFailure(err, resp))
+        return
       }
+      dispatch(postFollowSuccess(resp))
     },
+    /*
+     * unfollow a user
+     * @async
+     * @param {object} user
+     * @return {void}
+     */
     removeFollow: async (user) => {
-      try {
-        const resp = await dispatch(removeFollow(user)).payload
-        dispatch(removeFollowSuccess(resp))
-      } catch (err) {
-        dispatch(removeFollowFailure(err))
+      const [err, resp] = await to(dispatch(removeFollow(user)).payload)
+      if (err) {
+        dispatch(removeFollowFailure(err, resp))
+        return
       }
+      dispatch(removeFollowSuccess(resp))
     }
   }
 }
-
+/** class exporter with redux connect */
 export default connect(mapStateToProps, mapDispatchToProps)(UserProfile)

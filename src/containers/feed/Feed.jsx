@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './css/Feed.scss'
+import to from '../../utils/to'
 import FeedCtrl from './js/FeedCtrl'
 import { fetchFeed, fetchFeedSuccess, fetchFeedFailure } from '../../actions/FeedActions'
 import PicGallery from '../../components/picGallery/PicGallery'
@@ -9,8 +10,9 @@ import PicGallery from '../../components/picGallery/PicGallery'
  */
 class Feed extends FeedCtrl {
   /*
-   * life cicle react's method
-   */
+   * the method render is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#render
+   * */
   render () {
     this.feed = this.props.feed
     if (this.feed === undefined || this.feed.length < 1) { return null }
@@ -26,28 +28,36 @@ class Feed extends FeedCtrl {
   }
 }
 
+/*
+ * map state to props
+ * @param {object} state
+ * @return {object}
+ */
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     feed: state.FeedReducer.feed.pics
   }
 }
 
+/*
+ * map dispatch to props
+ * @param {function} dispatch
+ * @return {object}
+ */
 const mapDispatchToProps = (dispatch) => {
   return {
+    /*
+     * fetch the current user feed
+     * @reuturn {void}
+     */
     fetchFeed: async () => {
-      try {
-        const resp = await dispatch(fetchFeed()).payload
-        dispatch(fetchFeedSuccess(resp.docs))
-      } catch (err) {
-        dispatch(fetchFeedFailure(err))
+      const [err, resp] = await to(dispatch(fetchFeed()).payload)
+      if (err || !resp) {
+        dispatch(fetchFeedFailure(err, resp))
       }
-      //! resp.bool ? dispatch(fetchPicsSuccess(resp.docs)) : dispatch(fetchPicsFailure(resp.docs))
-      /* dispatch(fetchPics()).then((response) => {
-        !response.error ? dispatch(fetchPicsSuccess(response.payload.data)) : dispatch(fetchPicsFailure(response.payload.data))
-      }) */
+      dispatch(fetchFeedSuccess(resp.docs))
     }
   }
 }
-
+/** class export with redux connect */
 export default connect(mapStateToProps, mapDispatchToProps)(Feed)

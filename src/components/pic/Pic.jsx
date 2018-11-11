@@ -1,17 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './css/Pic.scss'
+import to from '../../utils/to'
 import PicCtrl from './js/PicCtrl'
 import { Link } from 'react-router-dom'
 import {
   postLike, postLikeSuccess, postLikeFailure,
   removeLike, removeLikeSuccess, removeLikeFailure
 } from '../../actions/LikeActions'
-
+import { postComment, postCommentSuccess, postCommentFailure } from '../../actions/CommentActions'
 class Pic extends PicCtrl {
   /*
    * constructor
-   *
+   * @see https://reactjs.org/docs/react-component.html#constructor
    * */
   constructor (props) {
     super(props)
@@ -21,8 +22,8 @@ class Pic extends PicCtrl {
   }
 
   /*
-   * constructor
-   *
+   * the method render is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#render
    * */
   render () {
     let description, topDescription
@@ -49,8 +50,8 @@ class Pic extends PicCtrl {
       description = (
         <div className='description margin-bottom-20 '>
           <ul className='row'>
-            { (this.pic.wasLikedByUser) ? <li className='col'><i className='fas fa-heart' /><button onClick={(e) => this.unlike(e, this.pic)} /> {this.pic.likes}</li> : <li className='col'><i className='far fa-heart' /><button onClick={(e) => this.like(e, this.pic)} /> {this.pic.likes}</li>}
-            <li className='col'><i className='far fa-comment' /> {this.pic.commentsQty}</li>
+            { (this.pic.wasLikedByUser) ? <li className='col'><button className='btn' onClick={(e) => this.unlike(e, this.pic)} ><i className='fas fa-heart' /> {this.pic.likes}</button></li> : <li className='col'><button className='btn ' onClick={(e) => this.like(e, this.pic)} ><i className='far fa-heart' /> {this.pic.likes} </button></li>}
+            <li className='col'><button className='btn' onClick={(e) => this.leaveComment(e, this.pic)} ><i className='far fa-comment' /> {this.pic.commentsQty}</button></li>
           </ul>
           <p className='align-justify cut-text desc-pic'>{this.pic.description }</p>
         </div>
@@ -69,33 +70,64 @@ class Pic extends PicCtrl {
     )
   }
 }
-
+/*
+ * map state to props
+ * @param {object} state
+ * @return {object}
+ */
 const mapStateToProps = (state) => {
-  console.log(state)
   return {
     likeList: state.LikeReducer.like
   }
 }
 
+/*
+ * map dispatch to props
+ * @param {object} state
+ * @return {void}
+ */
 const mapDispatchToProps = (dispatch) => {
   return {
+  /*
+   * like a pic
+   * @param {object} pic
+   * @return {void}
+   */
     postLike: async (pic) => {
-      try {
-        const resp = await dispatch(postLike(pic)).payload
-        dispatch(postLikeSuccess(resp.docs))
-      } catch (err) {
-        dispatch(postLikeFailure(err))
+      const [err, resp] = await to(dispatch(postLike(pic)).payload)
+      if (err || !resp) {
+        dispatch(postLikeFailure(err, resp))
+        return
       }
+      dispatch(postLikeSuccess(resp.docs))
     },
+    /*
+     * unlike a pic
+     * @param {object} pic
+     * @return {void}
+     */
     removeLike: async (pic) => {
-      try {
-        const resp = await dispatch(removeLike(pic)).payload
-        dispatch(removeLikeSuccess(resp.docs))
-      } catch (err) {
-        dispatch(removeLikeFailure(err))
+      const [err, resp] = await to(dispatch(removeLike(pic)).payload)
+      if (err || resp) {
+        dispatch(removeLikeFailure(err, resp))
+        return
       }
+      dispatch(removeLikeSuccess(resp.docs))
+    },
+    /*
+     * post a comment
+     * @param {object} pic
+     * @return {void}
+     */
+    postComment: async (comment) => {
+      const [err, resp] = await to(dispatch(postComment(comment)).payload)
+      if (err || !resp) {
+        dispatch(postCommentFailure(err, resp))
+        return
+      }
+      dispatch(postCommentSuccess())
     }
   }
 }
-
+/** class exporter with redux connection */
 export default connect(mapStateToProps, mapDispatchToProps)(Pic)

@@ -40,7 +40,8 @@ export function getPicSuccess (pic) {
  * @params {object} error
  * @return {object}
  * */
-export function getPicFailure (error) {
+export function getPicFailure (err, resp) {
+  const error = err || resp.error
   return {
     type: GET_PIC_FAILURE,
     payload: error
@@ -77,7 +78,8 @@ export function fetchPicsSuccess (pics) {
  * @params {object} error
  * @return {object}
  * */
-export function fetchPicsFailure (error) {
+export function fetchPicsFailure (err, resp) {
+  const error = err || resp.error
   return {
     type: FETCH_PICS_FAILURE,
     payload: error

@@ -3,6 +3,10 @@ import './css/UploadForm.scss'
 import UploadFormCtrl from './js/UploadFormCtrl'
 
 export default class UploadForm extends UploadFormCtrl {
+  /*
+   * the method render is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#render
+   * */
   render () {
     return (
       <form className='form-inline'>

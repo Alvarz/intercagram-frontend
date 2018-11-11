@@ -4,27 +4,25 @@ import CommentCtrl from './js/CommentCtrl'
 import { Link } from 'react-router-dom'
 
 export default class Comment extends CommentCtrl {
- 
   /*
    * constructor
-   *
+   * @see https://reactjs.org/docs/react-component.html#constructor
    * */
   constructor (props) {
     super(props)
-
     this.comment = this.props.comment
   }
 
   /*
-   * render method
-   *
+   * the method render is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#render
    * */
   render () {
     return (
       <div className='row'>
         <div className='comment-thumbnail-container' >
           <Link className='' to={`/profile/${this.comment.user}`} >
-            <img className='rounded-circle thumb-comment img-thumbnail' src='https://image.shutterstock.com/image-vector/female-profile-picture-placeholder-vector-260nw-450966937.jpg' alt='alt' />
+            <img className='rounded-circle thumb-comment img-thumbnail' src={this.comment.user.picProfile} alt='alt' />
           </Link>
         </div>
         <div className='comment-textbox col'>

@@ -9,9 +9,15 @@ import Profile from '../profile/Profile'
 import Follow from '../follow/Follow'
 import Search from '../search/Search'
 import Upload from '../upload/Upload'
+import to from '../../utils/to'
+import { connect } from 'react-redux'
+import { getMe, getMeSuccess, getMeFailure } from '../../actions/UsersActions'
 
-// <Route path="/pic/:picId"   component={  } />
-export default class App extends AppCtrl {
+class App extends AppCtrl {
+  /*
+   * the method render is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#render
+   * */
   render () {
     return (
       <div className='App'>
@@ -35,3 +41,36 @@ export default class App extends AppCtrl {
     )
   }
 }
+/*
+ * map state to props
+ * @param {object} state
+ * @return {object}
+ */
+const mapStateToProps = (state) => {
+  return {
+    me: state.UserReducer.me.user
+  }
+}
+
+/*
+ * map dispatch to props
+ * @param {function} dispatch
+ * @return {object}
+ */
+const mapDispatchToProps = (dispatch) => {
+  return {
+    /*
+     * get the current user data
+     * @return {void}
+     */
+    getMe: async () => {
+      const [err, resp] = await to(dispatch(getMe()).payload)
+      if (err || !resp) {
+        dispatch(getMeFailure(err, resp))
+      }
+      dispatch(getMeSuccess(resp))
+    }
+  }
+}
+/** class exporter with redux connect */
+export default connect(mapStateToProps, mapDispatchToProps)(App)
