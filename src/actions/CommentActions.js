@@ -12,6 +12,32 @@ export const POST_COMMENT_FAILURE = 'POST_COMMENT_FAILEDURE'
 export const REMOVE_COMMENT = 'REMOVE_COMMENT'
 export const REMOVE_COMMENT_SUCCESS = 'REMOVE_COMMENT_SUCCESS'
 export const REMOVE_COMMENT_FAILURE = 'REMOVE_COMMENT_FAILEDURE'
+
+export const SHOW_COMMENT_BOX = 'SHOW_COMMENT_COMMENT_BOX'
+export const HIDE_COMMENT_BOX = 'HIDE_COMMENT_COMMENT_BOX'
+
+/*
+ * snow modal
+ * @return {void}
+ * */
+export function showCommentBox (pic) {
+  return {
+    type: SHOW_COMMENT_BOX,
+    payload: pic
+  }
+}
+
+/*
+ * hide modal
+ * @return {void}
+ * */
+export function hideCommentBox (pic) {
+  return {
+    type: HIDE_COMMENT_BOX,
+    payload: pic
+  }
+}
+
 /*
  *  give like to a pic|
  * @params {object} pic

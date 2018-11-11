@@ -3,8 +3,9 @@
 import {
   FETCH_USERS, FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE,
   FETCH_USERS_PICS, FETCH_USERS_PICS_SUCCESS, FETCH_USERS_PICS_FAILURE,
-  GET_USER, GET_USER_SUCCESS, GET_USER_FAILURE,
-  GET_ME, GET_ME_SUCCESS, GET_ME_FAILURE
+  GET_USER, GET_USER_SUCCESS, GET_USER_FAILURE, SET_TOKEN,
+  GET_ME, GET_ME_SUCCESS, GET_ME_FAILURE,
+  LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE
 } from '../actions/UsersActions'
 
 /**    var  */
@@ -12,7 +13,9 @@ const INITIAL_STATE = {
   usersList: { users: [], error: null, loading: false },
   user: { user: {}, error: null, loading: false },
   me: { user: {}, error: null, loading: false },
-  picList: { pics: [], error: null, loading: false }
+  picList: { pics: [], error: null, loading: false },
+  signin: { login: {}, error: null, loading: false },
+  token: ''
 }
 
 /*
@@ -26,6 +29,23 @@ const userReducer = (state = INITIAL_STATE, action) => {
 
   switch (action.type) {
     /*
+       * LOGIN
+       *
+       * */
+    case LOGIN:
+      return { ...state, signin: { login: {}, error: null, loading: true } }
+    case LOGIN_SUCCESS:
+      return { ...state, signin: { login: action.payload, error: null, loading: true } }
+    case LOGIN_FAILURE:
+      error = action.payload /** || { message: action.payload.message }// 2nd one is network or server down errors */
+      return { ...state, signin: { login: {}, error: error, loading: false } }
+    /*
+       * SET TOKEN
+       *
+       * */
+    case SET_TOKEN:
+      return { ...state, token: action.payload }
+    /*
        * GET ME
        *
        * */
@@ -34,7 +54,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case GET_ME_SUCCESS:
       return { ...state, me: { user: action.payload, error: null, loading: true } }
     case GET_ME_FAILURE:
-      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
+      error = action.payload /** || { message: action.payload.message }// 2nd one is network or server down errors */
       return { ...state, me: { user: {}, error: error, loading: false } }
     /*
        * FETCH

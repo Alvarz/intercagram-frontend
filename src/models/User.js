@@ -8,7 +8,32 @@ export default class User {
    */
   constructor () {
     this.requester = new Requester()
+    this.loginUrl = process.env.REACT_APP_BACKEND_HOST
     this.baseUrl = `${process.env.REACT_APP_BACKEND_API}/users`
+  }
+
+  /*
+   * perform the login
+   * @async
+   * @param {string} _email
+   * @param {string} _password
+   * @return {promise}
+   * */
+  async login (_email, _password) {
+    const login = {
+      email: _email,
+      password: _password
+    }
+    const [error, response] = await to(this.requester.post(`${this.loginUrl}/signin`, login))
+
+    if (error || !response.data.status) {
+      return (error) || response.data
+    }
+
+    if (response.headers.hasOwnProperty('x-access-token')) {
+      response.data['x-access-token'] = response.headers['x-access-token']
+    }
+    return response.data
   }
 
   /*

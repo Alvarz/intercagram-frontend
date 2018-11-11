@@ -21,7 +21,6 @@ class App extends AppCtrl {
   render () {
     return (
       <div className='App'>
-        <Header />
         <div className='container'>
           <div className='row'>
             <div className='col-12 col-md-8 center col-cont'>
@@ -37,6 +36,7 @@ class App extends AppCtrl {
             </div>
           </div>
         </div>
+        <Header />
       </div>
     )
   }
@@ -48,7 +48,8 @@ class App extends AppCtrl {
  */
 const mapStateToProps = (state) => {
   return {
-    me: state.UserReducer.me.user
+    me: state.UserReducer.me.user,
+    token: state.UserReducer.token
   }
 }
 

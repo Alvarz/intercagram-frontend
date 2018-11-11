@@ -13,6 +13,7 @@ import LikeReducer from './LikeReducer'
 import UserReducer from './UserReducer'
 import FollowReducer from './FollowReducer'
 import SearchReducer from './SearchReducer'
+import CommentReducer from './CommentReducer'
 
 /**
  * @desc Export the reducers
@@ -24,5 +25,6 @@ export default (history) => combineReducers({
   LikeReducer,
   UserReducer,
   FollowReducer,
-  SearchReducer
+  SearchReducer,
+  CommentReducer
 })

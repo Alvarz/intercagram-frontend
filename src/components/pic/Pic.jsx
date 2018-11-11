@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import './css/Pic.scss'
 import to from '../../utils/to'
 import PicCtrl from './js/PicCtrl'
+import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
   postLike, postLikeSuccess, postLikeFailure,
   removeLike, removeLikeSuccess, removeLikeFailure
 } from '../../actions/LikeActions'
-import { postComment, postCommentSuccess, postCommentFailure } from '../../actions/CommentActions'
+import { postComment, postCommentSuccess, postCommentFailure, showCommentBox, hideCommentBox } from '../../actions/CommentActions'
 class Pic extends PicCtrl {
   /*
    * constructor
@@ -19,6 +20,21 @@ class Pic extends PicCtrl {
     this.pic = this.props.pic
 
     this.withDescription = this.props.withDescription
+  }
+
+  showComment () {
+    if (this.mustShowComment) {
+      return (<li className='col-12 hidden pic-comment-box'>
+        <form onSubmit={this.handleSubmit}>
+          <div className='form-group'>
+            <label htmlFor='comment'>Leave Comment </label>
+            <textarea value={this.state.value} onChange={this.handleChange} id='comment' className='form-control' >leave a comment</textarea>
+          </div>
+          <button type='submit' className='btn btn-primary'>send</button>
+        </form>
+
+      </li>)
+    } else { return null }
   }
 
   /*
@@ -51,7 +67,10 @@ class Pic extends PicCtrl {
         <div className='description margin-bottom-20 '>
           <ul className='row'>
             { (this.pic.wasLikedByUser) ? <li className='col'><button className='btn' onClick={(e) => this.unlike(e, this.pic)} ><i className='fas fa-heart' /> {this.pic.likes}</button></li> : <li className='col'><button className='btn ' onClick={(e) => this.like(e, this.pic)} ><i className='far fa-heart' /> {this.pic.likes} </button></li>}
-            <li className='col'><button className='btn' onClick={(e) => this.leaveComment(e, this.pic)} ><i className='far fa-comment' /> {this.pic.commentsQty}</button></li>
+            <li className='col'><button className='btn' onClick={(e) => this.leaveComment(e, this.pic)} >
+              <i className='far fa-comment' /> {this.pic.commentsQty}</button>
+            </li>
+            {this.showComment()}
           </ul>
           <p className='align-justify cut-text desc-pic'>{this.pic.description }</p>
         </div>
@@ -77,7 +96,9 @@ class Pic extends PicCtrl {
  */
 const mapStateToProps = (state) => {
   return {
-    likeList: state.LikeReducer.like
+    likeList: state.LikeReducer.like,
+    commentBox: state.CommentReducer.commentBox,
+    picUpdated: state.CommentReducer.element
   }
 }
 
@@ -119,15 +140,22 @@ const mapDispatchToProps = (dispatch) => {
      * @param {object} pic
      * @return {void}
      */
-    postComment: async (comment) => {
+    postComment: async (comment, pic) => {
       const [err, resp] = await to(dispatch(postComment(comment)).payload)
       if (err || !resp) {
         dispatch(postCommentFailure(err, resp))
         return
       }
       dispatch(postCommentSuccess())
+      dispatch(hideCommentBox(pic))
+    },
+    showCommentBox: (pic) => {
+      dispatch(showCommentBox(pic))
+    },
+    hideCommentBox: (pic) => {
+      dispatch(hideCommentBox(pic))
     }
   }
 }
 /** class exporter with redux connection */
-export default connect(mapStateToProps, mapDispatchToProps)(Pic)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Pic))

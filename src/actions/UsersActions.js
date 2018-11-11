@@ -17,6 +17,60 @@ export const FETCH_USERS_PICS = 'FETCH_USERS_PICS'
 export const FETCH_USERS_PICS_SUCCESS = 'FETCH_USERS_PICS_SUCCESS'
 export const FETCH_USERS_PICS_FAILURE = 'FETCH_USERS_PICS_FAILURE'
 
+export const LOGIN = 'LOGIN_PICS'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const SET_TOKEN = 'SET_TOKEN'
+
+/*
+ * set the token
+ * @param {string} token
+ * @return {object}
+ * */
+export function setToken (token) {
+  return {
+    type: SET_TOKEN,
+    payload: token
+  }
+}
+/*
+ * perform the sign in
+ * @param {string} email
+ * @param {string} password
+ * @return {object}
+ * */
+export function login (email, password) {
+  const user = new User()
+  return {
+    type: LOGIN,
+    payload: user.login(email, password)
+  }
+}
+
+/*
+ * on success
+ * @params {object} user
+ * @return {object}
+ * */
+export function loginSuccess (user) {
+  return {
+    type: LOGIN_SUCCESS,
+    payload: user
+  }
+}
+
+/*
+ * on error
+ * @params {object} error
+ * @return {object}
+ * */
+export function loginFailure (err, resp) {
+  const error = err
+  return {
+    type: LOGIN_FAILURE,
+    payload: error
+  }
+}
 /*
  * get logged in data
  * @return {object}

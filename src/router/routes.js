@@ -12,6 +12,7 @@ import {
  */
 // import Welcome from '../containers/Welcome/Welcome'
 import App from '../containers/app/App'
+import Login from '../containers/login/Login'
 
 /**
  * Metodo de manejo de rutas.
@@ -31,6 +32,7 @@ const Routes = props => {
         <Route path='/pic/:picId' component={App} />
         <Route path='/followers/:userId' component={App} />
         <Route path='/following/:userId' component={App} />
+        <Route path='/signin' component={Login} />
       </Switch>
     </Router>
   )

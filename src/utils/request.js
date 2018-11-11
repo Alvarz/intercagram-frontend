@@ -1,6 +1,8 @@
 // import { setStopRequest } from '../actions/ConfigActions';
 import axios from 'axios'
 import to from './to'
+import Storage from './storage'
+
 export default class Requester {
 /**
 * @desc Metodo nativo de React.js
@@ -9,13 +11,15 @@ export default class Requester {
 * @return { void }
 */
   constructor () {
+    let token = Storage.getElement('token')
+
     this.config = {
     /**
      *
      *   HEADER WAS HARDCODED TO TEST PURPOSES *
      * */
 
-      headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiNWJlNzBjNTU4ZWE0YTQzMTI0NDA4MGMyIiwiaWF0IjoxNTQxODY4NzU5fQ.mbtF3X6qT5yb20-FaOnWDaW3ban5j21a04_wE3WnkzA' }
+      headers: { 'Authorization': `Bearer ${token}` }
     }
     // Cabeceras
     this.dispatch = false

@@ -8,9 +8,6 @@ export default class Pic {
    */
   constructor () {
     this.requester = new Requester()
-
-    console.log(process.env)
-
     this.baseUrl = `${process.env.REACT_APP_BACKEND_API}/pics`
     this.baseUrlFeed = `${process.env.REACT_APP_BACKEND_API}/feed`
   }

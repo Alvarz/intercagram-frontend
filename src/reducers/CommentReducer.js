@@ -1,13 +1,16 @@
 /**    var  */
 import { POST_COMMENT, POST_COMMENT_SUCCESS, POST_COMMENT_FAILURE,
   REMOVE_COMMENT, REMOVE_COMMENT_SUCCESS, REMOVE_COMMENT_FAILURE,
-  FETCH_COMMENT, FETCH_COMMENT_SUCCESS, FETCH_COMMENT_FAILURE
-} from '../actions/commentActions'
+  FETCH_COMMENT, FETCH_COMMENT_SUCCESS, FETCH_COMMENT_FAILURE,
+  SHOW_COMMENT_BOX, HIDE_COMMENT_BOX
+} from '../actions/CommentActions'
 
 /**    var  */
 const INITIAL_STATE = {
   commentsList: { comments: [], error: null, loading: false },
-  comment: { comment: {}, error: null, loading: false }
+  comment: { comment: {}, error: null, loading: false },
+  commentBox: false,
+  element: null
 }
 
 /*
@@ -20,6 +23,14 @@ const commentReducer = (state = INITIAL_STATE, action) => {
   let error
 
   switch (action.type) {
+    /*
+       * MODAL
+       *
+       * */
+    case SHOW_COMMENT_BOX:
+      return { ...state, commentBox: true, element: action.payload }
+    case HIDE_COMMENT_BOX:
+      return { ...state, commentBox: false, element: action.payload }
     /*
        * FETCH
        *
