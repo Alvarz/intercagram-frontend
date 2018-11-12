@@ -1,14 +1,15 @@
 
-# Intecagram App
+# Intercagram App
 
-​This a frontend made with React-redux to be used as instagram clone 
+​This frontend was made with React-redux to be used as instagram clone 
 
 ## Install
 
 You need to copy the example env file and change as needed. 
-It need [MongoDB](https://www.mongodb.com/) to be installed en runing also you
-have to configure where is the base endpoint of the backend.
-after all this was done, you have to run the following commands
+It needs [MongoDB](https://www.mongodb.com/) to be installed en runing on your
+system, also you
+have to configure where is the base url endpoint of the backend.
+after all of this was done, you have to run the following commands
 
 ```bash
 cp .env.example .env
