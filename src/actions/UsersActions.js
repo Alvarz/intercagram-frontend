@@ -20,8 +20,51 @@ export const FETCH_USERS_PICS_FAILURE = 'FETCH_USERS_PICS_FAILURE'
 export const LOGIN = 'LOGIN_PICS'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+
+export const REGISTER = 'REGISTER'
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+export const REGISTER_FAILURE = 'REGISTER_FAILURE'
+
 export const SET_TOKEN = 'SET_TOKEN'
 
+/*
+ * perform the sign up
+ * @param {string} email
+ * @param {string} password
+ * @return {object}
+ * */
+export function register (userData) {
+  const user = new User()
+  return {
+    type: LOGIN,
+    payload: user.register(userData)
+  }
+}
+
+/*
+ * on success
+ * @params {object} user
+ * @return {object}
+ * */
+export function registerSuccess (user) {
+  return {
+    type: REGISTER_SUCCESS,
+    payload: user
+  }
+}
+
+/*
+ * on error
+ * @params {object} error
+ * @return {object}
+ * */
+export function registerFailure (err, resp) {
+  const error = err
+  return {
+    type: REGISTER_FAILURE,
+    payload: error
+  }
+}
 /*
  * set the token
  * @param {string} token

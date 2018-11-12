@@ -11,6 +11,18 @@ export default class User {
     this.loginUrl = process.env.REACT_APP_BACKEND_HOST
     this.baseUrl = `${process.env.REACT_APP_BACKEND_API}/users`
   }
+  /*
+   * perform the register
+   * @async
+   * @param {object} user
+   * @return {promise}
+   * */
+  async register (user) {
+    const [error, response] = await to(this.requester.post(`${this.loginUrl}/signup`, user))
+    if (error || !response.data.status) {
+      return (error) || response.data
+    }
+  }
 
   /*
    * perform the login

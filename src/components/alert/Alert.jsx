@@ -23,7 +23,7 @@ class Alert extends AlertCtrl {
    * @return {html}
    * */
   alertFailure () {
-    return (<div className='alert alert-error' role='alert' >
+    return (<div className='alert alert-danger' role='alert' >
       {this.alert.data}
       <button type='button' onClick={this.handleCloseClick} className='close' data-dismiss='alert' aria-label='Close'>
         <span aria-hidden='true'>&times;</span>

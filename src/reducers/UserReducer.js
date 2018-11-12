@@ -5,7 +5,8 @@ import {
   FETCH_USERS_PICS, FETCH_USERS_PICS_SUCCESS, FETCH_USERS_PICS_FAILURE,
   GET_USER, GET_USER_SUCCESS, GET_USER_FAILURE, SET_TOKEN,
   GET_ME, GET_ME_SUCCESS, GET_ME_FAILURE,
-  LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE
+  LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE,
+  REGISTER, REGISTER_SUCCESS, REGISTER_FAILURE
 } from '../actions/UsersActions'
 
 /**    var  */
@@ -15,6 +16,7 @@ const INITIAL_STATE = {
   me: { user: {}, error: null, loading: false },
   picList: { pics: [], error: null, loading: false },
   signin: { login: {}, error: null, loading: false },
+  signup: { register: {}, error: null, loading: false },
   token: ''
 }
 
@@ -28,6 +30,17 @@ const userReducer = (state = INITIAL_STATE, action) => {
   let error
 
   switch (action.type) {
+    /*
+       * REGISTER
+       *
+       * */
+    case REGISTER:
+      return { ...state, signup: { register: {}, error: null, loading: true } }
+    case REGISTER_SUCCESS:
+      return { ...state, signup: { register: action.payload, error: null, loading: true } }
+    case REGISTER_FAILURE:
+      error = action.payload /** || { message: action.payload.message }// 2nd one is network or server down errors */
+      return { ...state, signup: { register: {}, error: error, loading: false } }
     /*
        * LOGIN
        *

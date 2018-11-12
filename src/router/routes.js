@@ -13,6 +13,7 @@ import {
 // import Welcome from '../containers/Welcome/Welcome'
 import App from '../containers/app/App'
 import Login from '../containers/login/Login'
+import Register from '../containers/register/Register'
 
 /**
  * Metodo de manejo de rutas.
@@ -33,6 +34,7 @@ const Routes = props => {
         <Route path='/followers/:userId' component={App} />
         <Route path='/following/:userId' component={App} />
         <Route path='/signin' component={Login} />
+        <Route path='/signup' component={Register} />
       </Switch>
     </Router>
   )

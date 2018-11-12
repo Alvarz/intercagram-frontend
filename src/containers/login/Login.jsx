@@ -1,6 +1,7 @@
 import React from 'react'
 import './css/Login.scss'
 import LoginCtrl from './js/LoginCtrl'
+import { Link } from 'react-router-dom'
 import to from '../../utils/to'
 import { connect } from 'react-redux'
 import { login, loginSuccess, loginFailure, setToken } from '../../actions/UsersActions'
@@ -14,7 +15,6 @@ class Login extends LoginCtrl {
    * @see https://reactjs.org/docs/react-component.html#render
    * */
   render () {
-    console.log('aca')
     return (
       <div className='Login'>
         <div className='container'>
@@ -30,7 +30,16 @@ class Login extends LoginCtrl {
                   <label htmlFor='password'>Password</label>
                   <input type='password' value={this.state.password} onChange={this.handleChangePassword} className='form-control' id='password' placeholder='Password' />
                 </div>
-                <button type='submit' className='btn btn-primary'>Submit</button>
+                <div className='row'>
+
+                  <div className='col'>
+                    <button type='submit' className='btn btn-primary'>Submit</button>
+                  </div>
+                  <div className='col'>
+                    <Link className='nav-link' to='/signup'><i className='fa fa-lg fa-user-plus' /> SignUp</Link>
+                  </div>
+                </div>
+
               </form>
             </div>
           </div>
