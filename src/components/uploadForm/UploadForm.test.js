@@ -1,9 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import UploadForm from './UploadForm';
+import React from 'react'
+import UploadForm from './UploadForm'
+import configureStore from 'redux-mock-store'
+import { shallow } from 'enzyme'
+
+let initialState = {
+}
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<UploadForm />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+  let mockStore = configureStore()
+
+  // Store
+  let store = mockStore(initialState)
+
+  // Wrappeamos el componente
+  let wrapper = shallow(<UploadForm store={store} />, { initialState })
+
+  // Validamos que renderice.
+  expect(wrapper).toMatchSnapshot()
+})

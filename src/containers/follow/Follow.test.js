@@ -1,9 +1,27 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Follow from './Follow'
+import configureStore from 'redux-mock-store'
+import { shallow } from 'enzyme'
+
+let initialState = {
+
+  FollowReducer: {
+    follow: {
+      followers: [],
+      following: []
+    }
+  }
+}
 
 it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<Follow />, div)
-  ReactDOM.unmountComponentAtNode(div)
+  let mockStore = configureStore()
+
+  // Store
+  let store = mockStore(initialState)
+
+  // Wrappeamos el componente
+  let wrapper = shallow(<Follow store={store} />, { initialState })
+
+  // Validamos que renderice.
+  expect(wrapper).toMatchSnapshot()
 })

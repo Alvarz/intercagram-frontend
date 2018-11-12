@@ -1,9 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Search from './Search';
+import React from 'react'
+import Search from './Search'
+import configureStore from 'redux-mock-store'
+import { shallow } from 'enzyme'
+
+let initialState = {
+
+  SearchReducer: {
+    stateAreSearchResult: true,
+    picsList: {
+      pics: []
+    }
+  }
+}
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Search />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+  let mockStore = configureStore()
+
+  // Store
+  let store = mockStore(initialState)
+
+  // Wrappeamos el componente
+  let wrapper = shallow(<Search store={store} />, { initialState })
+
+  // Validamos que renderice.
+  expect(wrapper).toMatchSnapshot()
+})

@@ -1,9 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Feed from './Feed';
+import React from 'react'
+import Feed from './Feed'
+import configureStore from 'redux-mock-store'
+import { shallow } from 'enzyme'
+
+let initialState = {
+
+  FeedReducer: {
+    feed: {
+      pics: []
+    }
+  }
+}
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Feed />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+  let mockStore = configureStore()
+
+  // Store
+  let store = mockStore(initialState)
+
+  // mount the component
+  let wrapper = shallow(<Feed store={store} />, { initialState })
+
+  // match snapshot
+  expect(wrapper).toMatchSnapshot()
+})

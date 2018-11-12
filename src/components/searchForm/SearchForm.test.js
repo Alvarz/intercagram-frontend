@@ -1,9 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import SearchForm from './SearchForm';
+import React from 'react'
+import SearchForm from './SearchForm'
+import configureStore from 'redux-mock-store'
+import { shallow } from 'enzyme'
+
+let initialState = {}
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<SearchForm />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+  let mockStore = configureStore()
+
+  // Store
+  let store = mockStore(initialState)
+
+  // Wrappeamos el componente
+  let wrapper = shallow(<SearchForm store={store} />, { initialState })
+
+  // Validamos que renderice.
+  expect(wrapper).toMatchSnapshot()
+})

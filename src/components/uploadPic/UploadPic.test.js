@@ -1,9 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import UploadPic from './UploadPic';
+import React from 'react'
+import UploadPic from './UploadPic'
+import configureStore from 'redux-mock-store'
+import { shallow } from 'enzyme'
+
+let initialState = {
+
+  UploadPicReducer: {
+    feed: {
+      pics: []
+    }
+  }
+}
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<UploadPic />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+  let mockStore = configureStore()
+
+  // Store
+  let store = mockStore(initialState)
+
+  // Wrappeamos el componente
+  let wrapper = shallow(<UploadPic store={store} />, { initialState })
+
+  // Validamos que renderice.
+  expect(wrapper).toMatchSnapshot()
+})

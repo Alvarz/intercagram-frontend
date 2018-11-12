@@ -1,9 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Header from './Header';
+import React from 'react'
+import Header from './Header'
+import configureStore from 'redux-mock-store'
+import { shallow } from 'enzyme'
+
+let initialState = {
+
+  UserReducer: {
+    me: {
+      user: {}
+    }
+  }
+}
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<Header />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+  let mockStore = configureStore()
+
+  // Store
+  let store = mockStore(initialState)
+
+  // Wrappeamos el componente
+  let wrapper = shallow(<Header store={store} />, { initialState })
+
+  // Validamos que renderice.
+  expect(wrapper).toMatchSnapshot()
+})

@@ -1,9 +1,26 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import PicPage from './PicPage'
+import configureStore from 'redux-mock-store'
+import { shallow } from 'enzyme'
+
+let initialState = {
+
+  PicReducer: {
+    pic: {
+      pic: []
+    }
+  }
+}
 
 it('renders without crashing', () => {
-  const div = document.createElement('div')
-  ReactDOM.render(<PicPage />, div)
-  ReactDOM.unmountComponentAtNode(div)
+  let mockStore = configureStore()
+
+  // Store
+  let store = mockStore(initialState)
+
+  // Wrappeamos el componente
+  let wrapper = shallow(<PicPage store={store} />, { initialState })
+
+  // Validamos que renderice.
+  expect(wrapper).toMatchSnapshot()
 })
