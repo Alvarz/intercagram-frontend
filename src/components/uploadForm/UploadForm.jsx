@@ -4,6 +4,7 @@ import UploadFormCtrl from './js/UploadFormCtrl'
 import { connect } from 'react-redux'
 import { showIt } from '../../actions/UploadActions'
 import { withRouter } from 'react-router-dom'
+
 class UploadForm extends UploadFormCtrl {
   /*
    * the method render is part of react lifecycle

@@ -4,6 +4,9 @@ import HeaderCtrl from './js/HeaderCtrl'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
+/*
+ * @class Header
+ */
 class Header extends HeaderCtrl {
   /*
    * the method render is part of react lifecycle
@@ -15,7 +18,7 @@ class Header extends HeaderCtrl {
         <nav className='navbar navbar-expand-lg navbar-expand-sm navbar-light bg-light'>
           <ul className='navbar-nav-custom row center'>
             <li className='nav-item active col-xs'>
-              <Link className='nav-link' to='/'><i className='fas fa-chevron-left' /></Link>
+              <Link onClick={this.goBack} className='nav-link' to='/'><i className='fas fa-chevron-left' /></Link>
             </li>
             <li className='nav-item col-xs'>
               <Link className='nav-link' to='/search'><i className='fas fa-lg fa-search' /></Link>

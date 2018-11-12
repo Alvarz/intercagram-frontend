@@ -3,13 +3,17 @@ import { connect } from 'react-redux'
 import './css/Pic.scss'
 import to from '../../utils/to'
 import PicCtrl from './js/PicCtrl'
-import { withRouter } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+import { showAlert } from '../../actions/AlertActions'
 import {
   postLike, postLikeSuccess, postLikeFailure,
   removeLike, removeLikeSuccess, removeLikeFailure
 } from '../../actions/LikeActions'
+
 import { postComment, postCommentSuccess, postCommentFailure, showCommentBox, hideCommentBox } from '../../actions/CommentActions'
+/*
+ * @class Pic
+ * */
 class Pic extends PicCtrl {
   /*
    * constructor
@@ -22,6 +26,10 @@ class Pic extends PicCtrl {
     this.withDescription = this.props.withDescription
   }
 
+  /*
+   * show the comments
+   * @return {html}
+   */
   showComment () {
     if (this.mustShowComment) {
       return (<li className='col-12 hidden pic-comment-box'>
@@ -148,10 +156,23 @@ const mapDispatchToProps = (dispatch) => {
       }
       dispatch(postCommentSuccess())
       dispatch(hideCommentBox(pic))
+      dispatch(showAlert({
+        type: 'SUCCESS',
+        show: true,
+        data: 'Succefully added a comment!'
+      }))
     },
+    /*
+     * show the comment box
+     * @return {void}
+     * */
     showCommentBox: (pic) => {
       dispatch(showCommentBox(pic))
     },
+    /*
+     * hide the comment box
+     * @return {void}
+     * */
     hideCommentBox: (pic) => {
       dispatch(hideCommentBox(pic))
     }

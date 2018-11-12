@@ -1,7 +1,9 @@
 
 import Requester from '../utils/request'
 import to from '../utils/to'
-
+/*
+ * @class Comment
+ */
 export default class Comment {
   /*
    * class constructor
@@ -13,6 +15,7 @@ export default class Comment {
 
   /*
    * get the comment of given pic id
+   * @async
    * @param {number} id
    * @return {promise}
    * */
@@ -24,6 +27,7 @@ export default class Comment {
 
   /*
    * fetch the comment of given pic id
+   * @async
    * @param {number} page
    * @return {promise}
    * */
@@ -35,6 +39,7 @@ export default class Comment {
 
   /*
    * post a new comment
+   * @async
    * @param {object} comment
    * @return {promise}
    * */
@@ -46,6 +51,7 @@ export default class Comment {
 
   /*
    * remove a comment
+   * @async
    * @param {number} id
    * @return {promise}
    * */

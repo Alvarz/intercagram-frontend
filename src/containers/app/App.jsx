@@ -3,12 +3,14 @@ import './css/App.scss'
 import AppCtrl from './js/AppCtrl'
 import { Switch, Route } from 'react-router-dom'
 import Header from '../../components/header/Header'
+import Loading from '../../components/loading/Loading'
 import Feed from '../feed/Feed'
 import PicPage from '../picPage/PicPage'
 import Profile from '../profile/Profile'
 import Follow from '../follow/Follow'
 import Search from '../search/Search'
 import Upload from '../upload/Upload'
+import Alert from '../../components//alert/Alert'
 import to from '../../utils/to'
 import { connect } from 'react-redux'
 import { getMe, getMeSuccess, getMeFailure } from '../../actions/UsersActions'
@@ -22,7 +24,11 @@ class App extends AppCtrl {
     return (
       <div className='App'>
         <div className='container'>
-          <div className='row'>
+          <div className='row margin-top-20'>
+            <div className='col-12 col-md-8 center col-cont' >
+              <Alert />
+              <Loading />
+            </div>
             <div className='col-12 col-md-8 center col-cont'>
               <Switch>
                 <Route exact path='/' component={Feed} />

@@ -4,6 +4,7 @@ import UploadPicCtrl from './js/UploadPicCtrl'
 import { withRouter } from 'react-router-dom'
 import to from '../../utils/to'
 import { upload, uploadSuccess, uploadFailure } from '../../actions/UploadActions'
+import { showAlert } from '../../actions/AlertActions'
 import { connect } from 'react-redux'
 
 class UploadPic extends UploadPicCtrl {
@@ -48,6 +49,11 @@ const mapDispatchToProps = (dispatch) => {
         return
       }
       dispatch(uploadSuccess(resp))
+      dispatch(showAlert({
+        type: 'SUCCESS',
+        show: true,
+        data: 'The Image was uploaded!'
+      }))
     }
   }
 }

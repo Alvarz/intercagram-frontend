@@ -45,7 +45,6 @@ export default class UploadPicCtrl extends Component {
   handlePublishClick = (e) => {
     e.preventDefault()
     this.pic.description = this.state.description
-    console.log(this.pic)
     /** create the form data to be uploaded */
     let formData = new FormData()
     formData.append('pic', this.pic.file)
