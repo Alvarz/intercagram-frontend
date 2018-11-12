@@ -55,6 +55,7 @@ const mapDispatchToProps = (dispatch) => {
       const [err, resp] = await to(dispatch(fetchFeed(page)).payload)
       if (err || !resp) {
         dispatch(fetchFeedFailure(err, resp))
+        return
       }
       dispatch(fetchFeedSuccess(resp.docs))
     }

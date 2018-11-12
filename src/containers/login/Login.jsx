@@ -74,6 +74,7 @@ const mapDispatchToProps = (dispatch) => {
       const [err, resp] = await to(dispatch(login(email, password)).payload)
       if (err || !resp) {
         dispatch(loginFailure(err, resp))
+        return
       }
       dispatch(loginSuccess(resp))
       dispatch(setToken(resp['x-access-token']))

@@ -69,8 +69,13 @@ const mapDispatchToProps = (dispatch) => {
       const [err, resp] = await to(dispatch(fetchFollowing(id)).payload)
       if (err) {
         dispatch(fetchFollowingFailure(err, resp))
+        return
       }
-      if (resp.hasOwnProperty('docs')) { dispatch(fetchFollowingSuccess(resp.docs)) } else { dispatch(fetchFollowingSuccess(resp)) }
+      if (typeof resp === 'object' && resp.hasOwnProperty('docs')) {
+        dispatch(fetchFollowingSuccess(resp.docs))
+      } else {
+        dispatch(fetchFollowingSuccess(resp))
+      }
     },
     /*
      * set the follow type

@@ -59,7 +59,11 @@ const mapDispatchToProps = (dispatch) => {
         dispatch(fetchPicsFailure(err, resp))
         return
       }
-      if (resp.hasOwnProperty('docs')) { dispatch(fetchPicsSuccess(resp.docs)) } else { dispatch(fetchPicsSuccess(resp)) }
+      if (typeof resp === 'object' && resp.hasOwnProperty('docs')) {
+        dispatch(fetchPicsSuccess(resp.docs))
+      } else {
+        dispatch(fetchPicsSuccess(resp))
+      }
     }
   }
 }
