@@ -10,6 +10,9 @@ import {
   isFollower
 } from '../../actions/FollowActions'
 
+/*
+ * @class Follow
+ * */
 class Follow extends FollowCtrl {
   /*
    * the method render is part of react lifecycle
@@ -67,7 +70,7 @@ const mapDispatchToProps = (dispatch) => {
       if (err) {
         dispatch(fetchFollowingFailure(err, resp))
       }
-      dispatch(fetchFollowingSuccess(resp.docs))
+      if (resp.hasOwnProperty('docs')) { dispatch(fetchFollowingSuccess(resp.docs)) } else { dispatch(fetchFollowingSuccess(resp)) }
     },
     /*
      * set the follow type

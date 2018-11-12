@@ -5,10 +5,10 @@ import SearchCtrl from './js/SearchCtrl'
 import to from '../../utils/to'
 import Gallery from '../../components/gallery/Gallery'
 import SearchForm from '../../components/searchForm/SearchForm'
-
 import { fetchPics, fetchPicsSuccess, fetchPicsFailure } from '../../actions/PicsActions'
+
 /*
- * Search class
+ *  @class Search
  */
 class Search extends SearchCtrl {
   /*
@@ -53,13 +53,13 @@ const mapDispatchToProps = (dispatch) => {
      * fetch pics
      * @return {void}
      */
-    fetchPics: async () => {
-      const [err, resp] = await to(dispatch(fetchPics()).payload)
+    fetchPics: async (page = 1) => {
+      const [err, resp] = await to(dispatch(fetchPics(page)).payload)
       if (err || !resp) {
         dispatch(fetchPicsFailure(err, resp))
         return
       }
-      dispatch(fetchPicsSuccess(resp.docs))
+      if (resp.hasOwnProperty('docs')) { dispatch(fetchPicsSuccess(resp.docs)) } else { dispatch(fetchPicsSuccess(resp)) }
     }
   }
 }

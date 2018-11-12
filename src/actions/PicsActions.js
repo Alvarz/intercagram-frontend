@@ -52,12 +52,12 @@ export function getPicFailure (err, resp) {
  *  fetch pics
  * @return {object}
  * */
-export function fetchPics () {
+export function fetchPics (page = 1) {
   const pic = new Pic()
 
   return {
     type: FETCH_PICS,
-    payload: pic.fetch()
+    payload: pic.fetch(page)
   }
 }
 

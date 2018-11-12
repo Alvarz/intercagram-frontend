@@ -49,7 +49,7 @@ export default class Pic {
    * @return {promise}
    * */
   async fetch (page = 1) {
-    const [error, response ] = await to(this.requester.get(this.baseUrl))
+    const [error, response ] = await to(this.requester.get(`${this.baseUrl}?page=${page}`))
     if (error) return error
     return response.data
   }
@@ -61,7 +61,7 @@ export default class Pic {
    * @return {promise}
    * */
   async fetchFeed (page = 1) {
-    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/feed`))
+    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/feed?page=${page}`))
     if (error) return error
     return response.data
   }

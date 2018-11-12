@@ -5,12 +5,16 @@ import to from '../../utils/to'
 import { connect } from 'react-redux'
 import { login, loginSuccess, loginFailure, setToken } from '../../actions/UsersActions'
 
+/*
+ * @class Login
+ * */
 class Login extends LoginCtrl {
   /*
    * the method render is part of react lifecycle
    * @see https://reactjs.org/docs/react-component.html#render
    * */
   render () {
+    console.log('aca')
     return (
       <div className='Login'>
         <div className='container'>

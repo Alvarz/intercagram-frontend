@@ -1,11 +1,24 @@
 import { Component } from 'react'
 
 import { followType } from '../../../actions/FollowActions'
+
+/*
+ * @class FollowCtrl
+ * */
 export default class FollowCtrl extends Component {
+  /*
+   * componnent did mount
+   * @see https://reactjs.org/docs/react-component.html#componentdidmount
+   * */
   componentDidMount () {
     this.handler()
   }
 
+  /*
+   * event handler
+   * @async
+   * @return {void}
+   */
   async handler () {
     this.id = this.props.match.params.userId
     const url = this.props.match.path

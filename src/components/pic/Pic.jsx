@@ -89,7 +89,7 @@ class Pic extends PicCtrl {
       <section>
         {topDescription}
         <div className='image margin-top-5'>
-          <Link to={`/pic/${this.pic._id}`}> <img src={this.pic.url} alt='image' />
+          <Link to={`/pic/${this.pic._id}`}> <img src={this.pic.url} alt={`p-${this.pic._id}`} />
           </Link>
         </div>
         {description}

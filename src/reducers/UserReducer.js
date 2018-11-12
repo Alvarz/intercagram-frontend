@@ -65,7 +65,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case FETCH_USERS_SUCCESS:
       return { ...state, usersList: { users: action.payload, error: null, loading: true } }
     case FETCH_USERS_FAILURE:
-      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
+      error = action.payload /** || { message: action.payload.message }// 2nd one is network or server down errors */
       return { ...state, usersList: { users: [], error: error, loading: false } }
 
     /*
@@ -77,7 +77,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case FETCH_USERS_PICS_SUCCESS:
       return { ...state, picList: { pics: action.payload, error: null, loading: true } }
     case FETCH_USERS_PICS_FAILURE:
-      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
+      error = action.payload /** || { message: action.payload.message }// 2nd one is network or server down errors */
       return { ...state, picList: { pics: [], error: error, loading: false } }
       /*
        * GET
@@ -88,7 +88,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
     case GET_USER_SUCCESS:
       return { ...state, user: { user: action.payload, error: null, loading: true } }
     case GET_USER_FAILURE:
-      error = action.payload || { message: action.payload.message }// 2nd one is network or server down errors
+      error = action.payload /** || { message: action.payload.message }// 2nd one is network or server down errors */
       return { ...state, user: { user: {}, error: error, loading: false } }
 
     default:

@@ -1,6 +1,9 @@
 import { Component } from 'react'
 import Storage from '../../../utils/storage'
 
+/*
+ * @class AppCtrl
+ * */
 export default class AppCtrl extends Component {
   /*
    * component did update is a react life cycle method
@@ -33,7 +36,7 @@ export default class AppCtrl extends Component {
 
     /** we have no token so must clean the credentials */
     Storage.clear()
-    this.props.history.push('/login')
+    this.props.history.push('/signin')
   }
 
   /*

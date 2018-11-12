@@ -1,7 +1,15 @@
 import { Component } from 'react'
 import Storage from '../../../utils/storage'
+
+/*
+ * @class LoginCtrl
+ * */
 export default class LoginCtrl extends Component {
 
+  /*
+   * the constructor method is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#constructor
+   * */
   constructor(props){
     super(props)
     this.state = {
@@ -10,9 +18,13 @@ export default class LoginCtrl extends Component {
     }
   }
 
+  /*
+   * the constructor method is part of react lifecycle
+   * @see https://reactjs.org/docs/react-component.html#componentdidupdate
+   * */
   componentDidUpdate(){
 
-    if(!this.props.hasOwnProperty('token') || this.props.token == '')
+    if(!this.props.hasOwnProperty('token') || this.props.token === '')
       return
     
     let  { token } = this.props
@@ -53,7 +65,11 @@ export default class LoginCtrl extends Component {
     this.setState({ email: e.target.value})
   }
 
-
+  /*
+   * handle the on change event to write on the input
+   * @param {object} e
+   * @return {void}
+   */
   handleChangePassword = (e) => {
     /** using arrow function to not bind it in constructor */
     this.setState({ password: e.target.value })

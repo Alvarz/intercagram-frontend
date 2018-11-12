@@ -14,7 +14,9 @@ import Alert from '../../components//alert/Alert'
 import to from '../../utils/to'
 import { connect } from 'react-redux'
 import { getMe, getMeSuccess, getMeFailure } from '../../actions/UsersActions'
-
+/*
+ * @class App
+ * */
 class App extends AppCtrl {
   /*
    * the method render is part of react lifecycle

@@ -6,7 +6,9 @@ import PicPageCtrl from './js/PicPageCtrl'
 import Pic from '../../components/pic/Pic'
 import { getPic, getPicSuccess, getPicFailure } from '../../actions/PicsActions'
 import CommentList from '../../components/commentList/CommentList'
-// <Route path="/pic/:picId"   component={  } />
+/*
+   * @class PicPage
+   * */
 class PicPage extends PicPageCtrl {
   /*
    * the method render is part of react lifecycle

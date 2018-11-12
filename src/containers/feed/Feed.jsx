@@ -14,7 +14,8 @@ class Feed extends FeedCtrl {
    * @see https://reactjs.org/docs/react-component.html#render
    * */
   render () {
-    this.feed = this.props.feed
+    // this.feed = this.props.feed
+    this.feed = this.feed.concat(this.props.feed)
     if (this.feed === undefined || this.feed.length < 1) { return null }
 
     return (
@@ -50,8 +51,8 @@ const mapDispatchToProps = (dispatch) => {
      * fetch the current user feed
      * @reuturn {void}
      */
-    fetchFeed: async () => {
-      const [err, resp] = await to(dispatch(fetchFeed()).payload)
+    fetchFeed: async (page = 1) => {
+      const [err, resp] = await to(dispatch(fetchFeed(page)).payload)
       if (err || !resp) {
         dispatch(fetchFeedFailure(err, resp))
       }

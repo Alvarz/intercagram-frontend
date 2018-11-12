@@ -8,7 +8,8 @@ export default class Gallery extends GalleryCtrl {
    * constructor
    * @see https://reactjs.org/docs/react-component.html#constructor
    * */
-  componentWillMount () {
+  constructor (props) {
+    super(props)
     this.withDesction = this.props.withDescription
   }
 

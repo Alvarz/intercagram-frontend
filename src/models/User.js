@@ -79,7 +79,7 @@ export default class User {
    * @return {promise}
    * */
   async fetchUserPics (id, page = 1) {
-    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/${id}/pics`))
+    const [error, response ] = await to(this.requester.get(`${this.baseUrl}/${id}/pics?page=${page}`))
     if (error) return error
     return response.data
   }

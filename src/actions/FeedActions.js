@@ -9,12 +9,12 @@ export const FETCH_FEED_FAILURE = 'FETCH_FEED_FAILEDURE'
  * fetch action
  * @return {object}
  * */
-export function fetchFeed () {
+export function fetchFeed (page = 1) {
   const pic = new Pic()
 
   return {
     type: FETCH_FEED,
-    payload: pic.fetchFeed()
+    payload: pic.fetchFeed(page)
   }
 }
 

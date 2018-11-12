@@ -191,12 +191,12 @@ export function fetchUsersFailure (err, resp) {
  * @params {number} id
  * @return {object}
  * */
-export function fetchUserPics (id) {
+export function fetchUserPics (id, page = 1) {
   const user = new User()
 
   return {
     type: FETCH_USERS_PICS,
-    payload: user.fetchUserPics(id)
+    payload: user.fetchUserPics(id, page = 1)
   }
 }
 

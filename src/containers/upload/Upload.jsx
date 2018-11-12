@@ -4,7 +4,7 @@ import UploadCtrl from './js/UploadCtrl'
 import UploadForm from '../../components/uploadForm/UploadForm'
 import UploadPic from '../../components/uploadPic/UploadPic'
 /*
- * Upload class
+ * @class Upload
  */
 export default class Upload extends UploadCtrl {
   /*

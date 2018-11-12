@@ -11,12 +11,13 @@ import {
 
 } from '../../actions/UsersActions'
 /*
- * Profile class
+ * @class Profile
  */
 class Profile extends ProfileCtrl {
   /*
-   * life cicle react's method
-   */
+   * render
+   * @see https://reactjs.org/docs/react-component.html#render
+   * */
   render () {
     this.user = this.props.user
     this.pics = this.props.pics
@@ -73,8 +74,8 @@ const mapDispatchToProps = (dispatch) => {
      * @param {number} id
      * @return {void}
      * */
-    fetchUserPics: async (id) => {
-      const [err, resp] = await to(dispatch(fetchUserPics(id)).payload)
+    fetchUserPics: async (id, page) => {
+      const [err, resp] = await to(dispatch(fetchUserPics(id, page)).payload)
       if (err || !resp) {
         dispatch(fetchUserPicsFailure(err, resp))
         return
