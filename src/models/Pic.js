@@ -12,6 +12,12 @@ export default class Pic {
     this.baseUrlFeed = `${process.env.REACT_APP_BACKEND_API}/feed`
   }
 
+  async upload (data) {
+    const [error, response] = await to(this.requester.post(this.baseUrl, data))
+    if (error) return error
+    return response.data
+  }
+
   /*
    * search pics
    * @async

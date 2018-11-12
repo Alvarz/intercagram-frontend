@@ -1,25 +1,42 @@
 import React from 'react'
 import './css/UploadForm.scss'
 import UploadFormCtrl from './js/UploadFormCtrl'
-
-export default class UploadForm extends UploadFormCtrl {
+import { connect } from 'react-redux'
+import { showIt } from '../../actions/UploadActions'
+import { withRouter } from 'react-router-dom'
+class UploadForm extends UploadFormCtrl {
   /*
    * the method render is part of react lifecycle
    * @see https://reactjs.org/docs/react-component.html#render
    * */
   render () {
     return (
-      <form className='form-inline'>
-        <div className='form-group'>
-          <label htmlFor='exampleFormControlFile1'>Picture</label>
-          <input type='file' className='form-control-file' id='exampleFormControlFile1' />
+      <form className='form-inline margin-bottom-20' onSubmit={this.handleSubmit} encType='multipart/form-data'>
+        <div className='row full-width'>
+          <div className='col'>
+            <label htmlFor='file'>Select picture</label>
+            <input type='file' value={this.state.file} onChange={this.handleChangeFile} className='form-control-file' id='file' name='file' />
+          </div>
+          <div className='col'>
+            <button type='submit' className='form-upload-btn btn btn-outline-primary'><i className='fas fa-file-upload' /></button>
+          </div>
         </div>
-        <div className='form-group'>
-          <label htmlFor='exampleFormControlTextarea1'>Description</label>
-          <textarea className='form-control' id='exampleFormControlTextarea1' rows='3' />
-        </div>
-        <button type='submit' className='form-search-btn btn btn-outline-primary btn-sm mb-2'><i className='fa fa-lg fa-search' /></button>
       </form>
     )
   }
 }
+
+/*
+ * mamp dispatch to props
+ * @param {function} dispatch
+ * @return {void}
+ */
+const mapDispatchToProps = (dispatch) => {
+  return {
+    showIt: (image) => {
+      dispatch(showIt(image))
+    }
+  }
+}
+/** class exporter with redux connect */
+export default withRouter(connect(null, mapDispatchToProps)(UploadForm))
