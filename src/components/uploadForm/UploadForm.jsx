@@ -16,7 +16,7 @@ class UploadForm extends UploadFormCtrl {
         <div className='row full-width'>
           <div className='col'>
             <label htmlFor='file'>Select picture</label>
-            <input type='file' value={this.state.file} onChange={this.handleChangeFile} className='form-control-file' id='file' name='file' />
+            <input type='file' value={this.state.file} onChange={this.handleChangeFile} accept='image/*' className='form-control-file' id='file' name='file' />
           </div>
           <div className='col'>
             <button type='submit' className='form-upload-btn btn btn-outline-primary'><i className='fas fa-file-upload' /></button>
